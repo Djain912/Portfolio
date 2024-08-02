@@ -12,8 +12,6 @@ Welcome to my personal portfolio website! This is a showcase of my work, skills,
 - [Features](#features)
 - [Tech Stack](#tech-stack)
 - [Installation](#installation)
-- [Usage](#usage)
-- [Contact](#contact)
 - [Contributing](#contributing)
 - [License](#license)
 
