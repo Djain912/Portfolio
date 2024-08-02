@@ -60,7 +60,7 @@ To run the project locally, follow these steps:
 
 3. Install dependencies:
     ```bash
-    npm install
+    npm run dev
     ```
 
 ## Usage
