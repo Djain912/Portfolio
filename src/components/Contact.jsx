@@ -33,7 +33,7 @@ export default function Contact() {
           </div>
 
           {/* Social Media Links */}
-          <div className="flex flex-col items-center gap-2" data-aos="fade-right">
+          <div className="flex flex-col items-center mt-6 gap-2" data-aos="fade-right">
             <h3 className="text-2xl font-bold text-[#00FFFF] mb-4">Connect with Me</h3>
             <div className="flex gap-6 text-3xl">
             <a href="https://github.com/Djain912"target='_blank' className="text-4xl text-[#00FFFF] hover:text-white transition-colors duration-200">
