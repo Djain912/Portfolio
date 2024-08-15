@@ -5,6 +5,7 @@ import About from './components/About';
 import Languages from "./components/Languages";
 import Projects from "./components/Project";
 import Footer from './components/Footer';
+import Contact from './components/Contact';
 
 function App() {
     return (
@@ -22,9 +23,12 @@ function App() {
             <section id="projects">
                 <Projects />
             </section>
+           
             <section id="contact">
-                <Footer />
+                <Contact />
             </section>
+            <Footer />
+
         </>
     );
 }
