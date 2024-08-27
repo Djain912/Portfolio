@@ -1,4 +1,4 @@
-import img from '../assets/coder.svg';
+import img from '../assets/person.png';
 import '../App.css';
 export default function About() {
   return (

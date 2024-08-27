@@ -2,7 +2,7 @@ import React from 'react';
 import { TypeAnimation } from 'react-type-animation';
 import '../App.css';
 import img from '../assets/coder.svg';
-import sample from '../assets/img1.gif';
+import sample from '../assets/abtic.png';
 import resume from '../assets/DarshanJainResume.pdf'; // Import your resume file
 import {Button} from "@nextui-org/react";
 
