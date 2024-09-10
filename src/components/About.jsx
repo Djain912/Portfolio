@@ -6,7 +6,7 @@ export default function About() {
       <div className="flex-1 text-left p-6" data-aos="fade-up">
         <h1 className="text-[#00FFFF] text-6xl mb-4 sm:text-6xl">About Me</h1>
         <p className="text-white text-xl sm:text-3xl">
-          Hi, I’m Darshan Jain, a passionate programmer with a love for turning ideas into reality. With a keen eye for detail and a commitment to excellence, I enjoy tackling new challenges and continuously learning.
+Hi, I’m Darshan Jain, a passionate Full Stack Web Developer with experience as an intern at Elight Labs. I enjoy building dynamic, responsive web applications from the ground up, with proficiency in both front-end and back-end development. With a keen eye for detail and a commitment to excellence, I love turning ideas into reality, tackling new challenges, and continuously learning to enhance my skills.
         </p>
       </div>
       <div className="flex-1 p-6 flex items-center justify-center" data-aos="fade-down">
