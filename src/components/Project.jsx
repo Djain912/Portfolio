@@ -4,11 +4,18 @@ import { Card, CardBody, CardFooter, Image, link } from "@nextui-org/react";
 // Sample projects data
 const projects = [
   {
+    title: "Blog App for My client",
+    link:"https://jaintrades.netlify.app/",
+    description: "Get expert stock tips, daily insights, and strategies for smart trading decisions.",
+  img:"https://images.pexels.com/photos/159888/pexels-photo-159888.jpeg?auto=compress&cs=tinysrgb&w=600"
+  },
+  {
     title: "Blog App",
     link: "https://codeitupblogs.netlify.app/",
     description: "Documenting my coding experiences and solutions to real-world problems.",
     img: "https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=600",
   },
+
  
   // Add more projects here
 ];
