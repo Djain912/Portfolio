@@ -11,6 +11,9 @@ import cppLogo from '../assets/c-.png';
 import expressjsLogo from '../assets/express-js.png';
 import mongodbLogo from '../assets/mongo.svg';
 import sql from '../assets/sql.svg';
+// You'll need to add these logo imports
+import reactNativeLogo from '../assets/react-native.svg'; // You'll need this logo file
+import flutterLogo from '../assets/flutter.svg'; // You'll need this logo file
 
 // Define skill categories
 const skills = [
@@ -45,6 +48,22 @@ const skills = [
     proficiency: 92,
     color: 'from-cyan-400 to-blue-500',
     description: 'Hooks, Context API, Redux, Next.js'
+  },
+  { 
+    name: 'React Native', 
+    logo: reactNativeLogo, 
+    category: 'Mobile',
+    proficiency: 50,
+    color: 'from-blue-400 to-cyan-500',
+    description: 'Cross-platform mobile app development with React'
+  },
+  { 
+    name: 'Flutter', 
+    logo: flutterLogo, 
+    category: 'Mobile',
+    proficiency: 50,
+    color: 'from-blue-400 to-teal-500',
+    description: 'UI toolkit for building natively compiled applications'
   },
   { 
     name: 'Node JS', 

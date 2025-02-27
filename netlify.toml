@@ -1,0 +1,11 @@
+[build]
+  command = "npm run build"  # Change this based on your framework (e.g., "yarn build", "npm run generate" for Nuxt)
+  publish = "dist"  # Adjust for your framework (e.g., "build" for React, "dist" for Vue/Nuxt)
+
+[build.environment]
+  NODE_VERSION = "18"  # Adjust based on your project requirements
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
