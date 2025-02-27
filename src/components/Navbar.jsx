@@ -6,11 +6,12 @@ export default function Navbarr() {
   const [activeItem, setActiveItem] = useState("home");
   const [scrolled, setScrolled] = useState(false);
   
+  // Swapped the order of "My Skills" and "My Projects"
   const menuItems = [
     { name: "Home", id: "home" },
     { name: "About Me", id: "about-me" },
-    { name: "My Projects", id: "projects" },
-    { name: "My Skills", id: "skills" },
+    { name: "My Skills", id: "skills" },     // Moved up in the order
+    { name: "My Projects", id: "projects" }, // Moved down in the order
     { name: "Contact Me", id: "contact" },
   ];
 
@@ -50,9 +51,11 @@ export default function Navbarr() {
     };
   }, [menuItems]);
 
-  // Smooth scroll function
+  // Updated smooth scroll function to always close menu
   const scrollToSection = (id) => {
+    // Always close menu when an item is clicked
     setIsMenuOpen(false);
+    
     const element = document.getElementById(id);
     if (element) {
       window.scrollTo({
@@ -68,6 +71,7 @@ export default function Navbarr() {
       className={`text-white font-extrabold ${scrolled ? 'bg-gray-950/80 backdrop-blur-md' : 'bg-gray-950'} transition-all duration-300 fixed`}
       maxWidth="full"
       position="sticky"
+      isMenuOpen={isMenuOpen}
     >
       <NavbarContent>
         <NavbarMenuToggle
