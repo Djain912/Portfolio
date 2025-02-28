@@ -8,6 +8,8 @@ import Languages from "./components/Languages";
 import Projects from "./components/Project";
 import Footer from './components/Footer';
 import Contact from './components/Contact';
+import Publications from './components/Publications';
+import Awards from './components/Awards';
 
 function App() {
   return (
@@ -28,6 +30,12 @@ function App() {
             </section>
             <section id="projects">
               <Projects />
+            </section>
+            <section id="publications">
+              <Publications />
+            </section>
+            <section id="awards">
+              <Awards />
             </section>
             <section id="contact">
               <Contact />
