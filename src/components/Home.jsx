@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { TypeAnimation } from 'react-type-animation';
 import '../App.css';
 import sample from '../assets/abtic.png';
-import resume from '../assets/DarshanJainResume.pdf';
+import resume from '../assets/.pdf';
 import { Button } from "@nextui-org/react";
 
 export default function Home() {
