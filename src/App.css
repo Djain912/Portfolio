@@ -1,0 +1,219 @@
+.abtimg{
+    animation: animate 2s linear infinite; 
+}
+
+@keyframes animate {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-15px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  .shadow-glow {
+    box-shadow: 0 0 20px #0ff7, 0 0 30px #0ff7;
+    animation: glow 2s infinite alternate;
+  }
+  
+  @keyframes glow {
+    from {
+      box-shadow: 0 0 10px #0ff7, 0 0 20px #0ff7;
+    }
+    to {
+      box-shadow: 0 0 20px #0ff7, 0 0 30px #0ff7;
+    }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(5deg); }
+  }
+  
+  @keyframes neon-pulse {
+    0%, 100% { box-shadow: 0 0 10px #00FFFF, 0 0 20px #00FFFF; }
+    50% { box-shadow: 0 0 20px #00FFFF, 0 0 40px #00FFFF; }
+  }
+  
+  .scanlines {
+    background: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.05) 1px,
+      transparent 1px
+    );
+    background-size: 100% 2px;
+  }
+  
+  .shadow-cyber {
+    filter: drop-shadow(0 0 10px #00FFFF) drop-shadow(0 0 20px rgba(0, 255, 255, 0.3));
+  }
+  
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .neon-pulse {
+    animation: neon-pulse 1.5s ease-in-out infinite;
+  }
+  @keyframes scanline {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100%); }
+  }
+  
+  .animate-scanline {
+    animation: scanline 4s linear infinite;
+  }
+  
+  .neon-pulse {
+    animation: neon-pulse 2s ease-in-out infinite;
+  }
+  
+  @keyframes neon-pulse {
+    0%, 100% { 
+      box-shadow: 0 0 10px rgba(34,211,238,0.3), 
+                  0 0 20px rgba(34,211,238,0.2); 
+    }
+    50% { 
+      box-shadow: 0 0 20px rgba(34,211,238,0.5), 
+                  0 0 40px rgba(34,211,238,0.3); 
+    }
+  }
+
+@keyframes scanline {
+  from { background-position: 0 0; }
+  to { background-position: 0 100%; }
+}
+
+@keyframes hologram {
+  0% { opacity: 0.2; transform: translateY(0); }
+  50% { opacity: 0.05; transform: translateY(10px); }
+  100% { opacity: 0.2; transform: translateY(0); }
+}
+
+.animate-scanline {
+  animation: scanline 60s linear infinite;
+}
+
+.animate-hologram {
+  animation: hologram 3s ease-in-out infinite;
+}
+
+
+
+.cyber-button {
+  position: relative;
+  padding: 1rem 2rem;
+  background: #000;
+  border: 2px solid #00ffff;
+  color: #00ffff;
+  font-family: monospace;
+  font-size: 1.25rem;
+  transition: all 0.3s;
+}
+
+.cyber-button::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border: 2px solid #ff00ff;
+  z-index: -1;
+}
+
+.cyber-glow {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(45deg, #00ffff, #ff00ff);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.cyber-button:hover .cyber-glow {
+  opacity: 0.1;
+}
+
+.progress-bar {
+  width: 200px;
+  height: 4px;
+  background: rgba(0, 255, 255, 0.2);
+}
+
+.progress-fill {
+  height: 100%;
+  background: #00ffff;
+  box-shadow: 0 0 10px #00ffff;
+}
+
+@keyframes hologram-pulse {
+  0% { opacity: 0.1; transform: scale(1); }
+  50% { opacity: 0.3; transform: scale(1.2); }
+  100% { opacity: 0.1; transform: scale(1); }
+}
+
+@keyframes data-stream {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+.hover-glow {
+  transition: filter 0.3s;
+}
+
+.hover-glow:hover {
+  filter: drop-shadow(0 0 10px #00ffff);
+}
+
+.cyber-border {
+  position: relative;
+  border: 2px solid #00ffff;
+}
+
+.cyber-border::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border: 2px solid #ff00ff;
+  z-index: -1;
+}@keyframes hologram-pulse {
+  0% { opacity: 0.1; transform: scale(1); }
+  50% { opacity: 0.3; transform: scale(1.2); }
+  100% { opacity: 0.1; transform: scale(1); }
+}
+
+@keyframes data-stream {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+.hover-glow {
+  transition: filter 0.3s;
+}
+
+.hover-glow:hover {
+  filter: drop-shadow(0 0 10px #00ffff);
+}
+
+.cyber-border {
+  position: relative;
+  border: 2px solid #00ffff;
+}
+
+.cyber-border::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border: 2px solid #ff00ff;
+  z-index: -1;
+}
+
+.command-line {
+  margin-bottom: 0.5rem;
+  padding-left: 1rem;
+  border-left: 2px solid #00ffff;
+  animation: text-glow 1s ease-in-out infinite alternate;
+}
+
+@keyframes text-glow {
+  from { text-shadow: 0 0 5px #00ffff; }
+  to { text-shadow: 0 0 15px #00ffff; }
+}

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Background Circle with Gradient -->
+  <circle cx="50" cy="50" r="48" fill="url(#gradient)" />
+  
+  <!-- Linear Gradient Definition -->
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4EB5FF" />
+      <stop offset="100%" stop-color="#3B82F6" />
+    </linearGradient>
+  </defs>
+  
+  <!-- DJ Text -->
+  <text x="50" y="65" 
+        font-family="Arial, sans-serif" 
+        font-weight="bold" 
+        font-size="45" 
+        text-anchor="middle" 
+        fill="white">DJ</text>
+</svg>
