@@ -129,7 +129,7 @@ const EnhancedLandingPage = () => {
             {/* Social links - fade in last with interactive hover effects */}
             <div className={`mt-8 flex justify-center space-x-6 transition-all duration-500 delay-150 ${animationComplete ? 'opacity-100' : 'opacity-0'}`}>
               <a 
-                href="https://github.com" 
+                href="https://github.com/Djain912" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="text-gray-400 hover:text-white p-2 rounded-full hover:bg-gray-800/50 transition-all duration-300 transform hover:scale-110 hover:-translate-y-1 social-icon"
@@ -139,7 +139,7 @@ const EnhancedLandingPage = () => {
                 </svg>
               </a>
               <a 
-                href="https://linkedin.com" 
+                href="https://linkedin.com/in/darshanjain912" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="text-gray-400 hover:text-white p-2 rounded-full hover:bg-gray-800/50 transition-all duration-300 transform hover:scale-110 hover:-translate-y-1 social-icon"
@@ -149,7 +149,8 @@ const EnhancedLandingPage = () => {
                 </svg>
               </a>
               <a 
-                href="mailto:contact@example.com" 
+                href="mailto:djain93211@gmail.com" 
+                target="_blank" 
                 className="text-gray-400 hover:text-white p-2 rounded-full hover:bg-gray-800/50 transition-all duration-300 transform hover:scale-110 hover:-translate-y-1 social-icon"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
