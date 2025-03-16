@@ -3,21 +3,28 @@ import { Card, CardBody, CardFooter, Image } from "@nextui-org/react";
 
 // Sample projects data
 const projects = [
-  {
-    title: "Blog App for My client",
-    link: "https://jaintrades.netlify.app/",
-    description: "Get expert stock tips, daily insights, and strategies for smart trading decisions.",
-    img: "https://images.pexels.com/photos/159888/pexels-photo-159888.jpeg?auto=compress&cs=tinysrgb&w=600",
-    tags: ["React", "NextUI", "Trading"]
-  },
+ 
   {
     title: "Blog App",
     link: "https://codeitupblogs.netlify.app/",
     description: "Documenting my coding experiences and solutions to real-world problems.",
     img: "https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=600",
-    tags: ["React", "CSS", "JavaScript"]
+    tags: ["React", "Tailwind","MongoDB","Node.js"]
   },
-  // Add more projects here
+  {
+    title: "Pothole Detection & Reward System",
+    link: "https://imgcdn.dev/album/pothole.3kig",
+    description: "AI-powered crowdsourced road maintenance app rewarding users for reporting potholes with public transport credits.",
+    img: "https://images.pexels.com/photos/2098624/pexels-photo-2098624.jpeg?auto=compress&cs=tinysrgb&w=600",
+    tags: ["React Native", "Node.js", "MongoDB", "AI/ML"]
+  },
+  {
+    title: "Smart Notes App",
+    link: "#",
+    description: "Android app for organized note-taking with reminders, motivational quotes, and cloud sync capabilities.",
+    img: "https://images.pexels.com/photos/606541/pexels-photo-606541.jpeg?auto=compress&cs=tinysrgb&w=600",
+    tags: ["Java", "Android", "Firebase"]
+  }
 ];
 
 export default function Projects() {

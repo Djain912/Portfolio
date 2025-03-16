@@ -4,11 +4,18 @@ import { Card, CardBody, Button } from "@nextui-org/react";
 // Awards data
 const awards = [
   {
+    title: "Excellence in Academics",
+    issuer: "Vidyalankar Polytechnic",
+    date: "2023",
+    description: "Awarded for achieving the highest percentage in Diploma in Information Technology at Vidyalankar Polytechnic. Semester 3rd - 87.63%, Semester 4th - 88.88%, Semester 5th - 91.29%.",
+    certificateUrl: "#"
+  },
+  {
     title: "Runner Up Award in College Project Exhibition",
     issuer: "Vidyalankar Polytechnic",
     date: "Mar 2024",
     description: "Awarded Runner ups place in the College Project Exhibition for the innovative project \"Bridging the Gap in the Startup Ecosystem.\" This project developed a platform fostering collaboration between public users, startups, and investors. Key features included AI-powered chatbot assistance, user testing opportunities, and mentorship programs. This award recognizes the project's contribution to enhancing communication, innovation, and entrepreneurial opportunities within the startup ecosystem.",
-    certificateUrl: "https://imgcdn.dev/i/Yh019t"
+    certificateUrl: "https://imgcdn.dev/i/Yj6B5T"
   }
 ];
 

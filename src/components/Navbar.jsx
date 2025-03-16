@@ -82,7 +82,7 @@ export default function Navbarr() {
           <div className="flex items-center">
             <div className="relative group">
               <p className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 text-4xl transition-all duration-300 hover:scale-105">
-                CodeItUp
+                Darshan Jain
               </p>
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-500 group-hover:w-full transition-all duration-300"></span>
             </div>
