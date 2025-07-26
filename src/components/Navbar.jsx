@@ -1,31 +1,24 @@
 import React, { useState, useEffect } from "react";
-import { Navbar, NavbarBrand, NavbarContent, NavbarItem, NavbarMenuToggle, NavbarMenu, NavbarMenuItem, Link } from "@nextui-org/react";
 
 export default function Navbarr() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeItem, setActiveItem] = useState("home");
   const [scrolled, setScrolled] = useState(false);
   
-  // Swapped the order of "My Skills" and "My Projects"
   const menuItems = [
     { name: "Home", id: "home" },
-    { name: "About Me", id: "about-me" },
-    { name: "My Skills", id: "skills" },     // Moved up in the order
-    { name: "My Projects", id: "projects" }, // Moved down in the order
-    { name: "Contact Me", id: "contact" },
+    { name: "About", id: "about-me" },
+    { name: "Skills", id: "skills" },
+    { name: "Projects", id: "projects" },
+    { name: "Contact", id: "contact" },
   ];
 
-  // Handle scroll to add glass effect
+  // Handle scroll effects
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
+      setScrolled(window.scrollY > 50);
     };
 
-    // Track scroll position to highlight active section
     const handleScrollSpy = () => {
       const sections = menuItems.map(item => document.getElementById(item.id));
       const scrollPosition = window.scrollY + 100;
@@ -51,9 +44,7 @@ export default function Navbarr() {
     };
   }, [menuItems]);
 
-  // Updated smooth scroll function to always close menu
   const scrollToSection = (id) => {
-    // Always close menu when an item is clicked
     setIsMenuOpen(false);
     
     const element = document.getElementById(id);
@@ -66,65 +57,124 @@ export default function Navbarr() {
   };
 
   return (
-    <Navbar 
-      onMenuOpenChange={setIsMenuOpen} 
-      className={`text-white font-extrabold ${scrolled ? 'bg-gray-950/80 backdrop-blur-md' : 'bg-gray-950'} transition-all duration-300 fixed`}
-      maxWidth="full"
-      position="sticky"
-      isMenuOpen={isMenuOpen}
-    >
-      <NavbarContent>
-        <NavbarMenuToggle
-          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-          className="sm:hidden text-cyan-400 hover:text-cyan-300 transition-colors"
-        />
-        <NavbarBrand>
-          <div className="flex items-center">
-            <div className="relative group">
-              <p className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 text-4xl transition-all duration-300 hover:scale-105">
+    <>
+      {/* Main Navbar */}
+      <nav 
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+          scrolled 
+            ? 'bg-white/90 backdrop-blur-md shadow-sm border-b border-gray-100' 
+            : 'bg-white/80 backdrop-blur-sm'
+        }`}
+      >
+        <div className="max-w-7xl mx-auto px-6 sm:px-12">
+          <div className="flex items-center justify-between h-16">
+            {/* Logo */}
+            <div className="flex-shrink-0">
+              <button
+                onClick={() => scrollToSection('home')}
+                className="text-2xl font-light text-gray-900 hover:text-gray-600 transition-colors duration-300"
+              >
                 Darshan Jain
-              </p>
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-500 group-hover:w-full transition-all duration-300"></span>
+              </button>
             </div>
-            <div className="ml-2 hidden md:flex">
-              <div className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></div>
-              <div className="w-2 h-2 rounded-full bg-blue-500 ml-1 animate-pulse" style={{ animationDelay: "300ms" }}></div>
-              <div className="w-2 h-2 rounded-full bg-cyan-400 ml-1 animate-pulse" style={{ animationDelay: "600ms" }}></div>
+
+            {/* Desktop Menu */}
+            <div className="hidden md:flex items-center space-x-8">
+              {menuItems.map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => scrollToSection(item.id)}
+                  className={`relative text-sm font-medium transition-all duration-300 py-2 ${
+                    activeItem === item.id 
+                      ? 'text-gray-900' 
+                      : 'text-gray-600 hover:text-gray-900'
+                  }`}
+                >
+                  {item.name}
+                  <span 
+                    className={`absolute bottom-0 left-0 h-px bg-gray-900 transition-all duration-300 ${
+                      activeItem === item.id ? 'w-full' : 'w-0'
+                    }`}
+                  />
+                </button>
+              ))}
             </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="md:hidden p-2 rounded-md text-gray-600 hover:text-gray-900 transition-colors duration-300"
+              aria-label="Toggle menu"
+            >
+              <div className="w-6 h-6 flex flex-col justify-center items-center">
+                <span 
+                  className={`block w-5 h-px bg-current transition-all duration-300 ${
+                    isMenuOpen ? 'rotate-45 translate-y-px' : '-translate-y-1'
+                  }`}
+                />
+                <span 
+                  className={`block w-5 h-px bg-current transition-all duration-300 ${
+                    isMenuOpen ? 'opacity-0' : 'opacity-100'
+                  }`}
+                />
+                <span 
+                  className={`block w-5 h-px bg-current transition-all duration-300 ${
+                    isMenuOpen ? '-rotate-45 -translate-y-px' : 'translate-y-1'
+                  }`}
+                />
+              </div>
+            </button>
           </div>
-        </NavbarBrand>
-      </NavbarContent>
+        </div>
+      </nav>
 
-      <NavbarContent className="hidden sm:flex gap-0 text-white" justify="center">
-        {menuItems.map((item) => (
-          <NavbarItem key={item.id} className="relative">
-            <Link 
-              href={`#${item.id}`}
-              onClick={() => scrollToSection(item.id)}
-              className={`text-lg md:text-xl lg:text-2xl px-4 py-2 mx-1 transition-all duration-300 relative group ${activeItem === item.id ? 'text-cyan-400 font-bold' : 'text-gray-300 hover:text-cyan-400'}`}
-              underline="none"
-            >
-              {item.name}
-              <span className={`absolute bottom-0 left-1/2 transform -translate-x-1/2 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-500 transition-all duration-300 ${activeItem === item.id ? 'w-4/5' : 'w-0 group-hover:w-2/3'}`}></span>
-            </Link>
-          </NavbarItem>
-        ))}
-      </NavbarContent>
-
-      <NavbarMenu className='bg-gray-900/95 backdrop-blur-lg pt-8 gap-6'>
-        {menuItems.map((item) => (
-          <NavbarMenuItem key={item.id} className="py-2">
-            <Link
-              onClick={() => scrollToSection(item.id)}
-              className={`w-full text-2xl transition-all duration-300 flex items-center py-2 px-4 rounded-lg ${activeItem === item.id ? 'text-cyan-400 bg-cyan-400/10 font-bold' : 'text-gray-300 hover:text-cyan-400 hover:bg-gray-800'}`}
-              href={`#${item.id}`}
-            >
-              <span className={`mr-2 inline-block w-1.5 h-6 rounded-full ${activeItem === item.id ? 'bg-gradient-to-b from-cyan-400 to-blue-500' : 'bg-transparent'}`}></span>
-              {item.name}
-            </Link>
-          </NavbarMenuItem>
-        ))}
-      </NavbarMenu>
-    </Navbar>
+      {/* Mobile Menu Overlay */}
+      <div 
+        className={`fixed inset-0 z-40 md:hidden transition-all duration-300 ${
+          isMenuOpen 
+            ? 'opacity-100 pointer-events-auto' 
+            : 'opacity-0 pointer-events-none'
+        }`}
+      >
+        {/* Backdrop */}
+        <div 
+          className="absolute inset-0 bg-black/20 backdrop-blur-sm"
+          onClick={() => setIsMenuOpen(false)}
+        />
+        
+        {/* Menu Panel */}
+        <div 
+          className={`absolute top-16 left-0 right-0 bg-white/95 backdrop-blur-md border-b border-gray-100 transition-all duration-300 ${
+            isMenuOpen ? 'translate-y-0' : '-translate-y-full'
+          }`}
+        >
+          <div className="px-6 py-8 space-y-6">
+            {menuItems.map((item, index) => (
+              <button
+                key={item.id}
+                onClick={() => scrollToSection(item.id)}
+                className={`block w-full text-left text-lg font-medium transition-all duration-300 py-2 ${
+                  activeItem === item.id 
+                    ? 'text-gray-900' 
+                    : 'text-gray-600 hover:text-gray-900'
+                }`}
+                style={{ 
+                  transitionDelay: isMenuOpen ? `${index * 50}ms` : '0ms' 
+                }}
+              >
+                <div className="flex items-center">
+                  <span 
+                    className={`inline-block w-6 h-px bg-gray-900 mr-3 transition-all duration-300 ${
+                      activeItem === item.id ? 'opacity-100' : 'opacity-0'
+                    }`}
+                  />
+                  {item.name}
+                </div>
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+    </>
   );
 }

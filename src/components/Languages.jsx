@@ -1,178 +1,165 @@
-import React, { useState } from 'react';
-import htmlLogo from '../assets/html.png';
-import cssLogo from '../assets/social.png';
-import jsLogo from '../assets/js.png';
-import reactLogo from '../assets/physics.png';
-import nodejsLogo from '../assets/programing.png';
-import pythonLogo from '../assets/python.png';
-import javaLogo from '../assets/java.png';
-import cLogo from '../assets/letter-c.png';
-import cppLogo from '../assets/c-.png';
-import expressjsLogo from '../assets/express-js.png';
-import mongodbLogo from '../assets/mongo.svg';
-import sql from '../assets/sql.svg';
-// You'll need to add these logo imports
-import reactNativeLogo from '../assets/react-native.svg'; // You'll need this logo file
-import flutterLogo from '../assets/flutter.svg'; // You'll need this logo file
+import React, { useState, useEffect } from 'react';
 
-// Define skill categories
+// Placeholder logos - replace these with your actual logo imports
+const htmlLogo = 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg';
+const cssLogo = 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg';
+const jsLogo = 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg';
+const reactLogo = 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg';
+const nodejsLogo = 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg';
+const pythonLogo = 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg';
+const javaLogo = 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg';
+const cLogo = 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg';
+const cppLogo = 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg';
+const expressjsLogo = 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg';
+const mongodbLogo = 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg';
+const sqlLogo = 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg';
+const reactNativeLogo = 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg';
+const flutterLogo = 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg';
+
+// Define skill categories with logos
 const skills = [
   { 
     name: 'HTML', 
-    logo: htmlLogo, 
-    category: 'Frontend',
-    proficiency: 95,
-    color: 'from-orange-500 to-red-500',
-    description: 'Semantic markup, accessibility, SEO optimization'
+    logo: htmlLogo,
+    category: 'Frontend'
   },
   { 
     name: 'CSS', 
-    logo: cssLogo, 
-    category: 'Frontend',
-    proficiency: 90,
-    color: 'from-blue-500 to-purple-500',
-    description: 'Responsive design, animations, Flexbox/Grid'
+    logo: cssLogo,
+    category: 'Frontend'
   },
   { 
     name: 'JavaScript', 
-    logo: jsLogo, 
-    category: 'Frontend',
-    proficiency: 88,
-    color: 'from-yellow-400 to-yellow-600',
-    description: 'ES6+, DOM manipulation, async programming'
+    logo: jsLogo,
+    category: 'Frontend'
   },
   { 
-    name: 'React JS', 
-    logo: reactLogo, 
-    category: 'Frontend',
-    proficiency: 92,
-    color: 'from-cyan-400 to-blue-500',
-    description: 'Hooks, Context API, Redux, Next.js'
+    name: 'React', 
+    logo: reactLogo,
+    category: 'Frontend'
   },
   { 
     name: 'React Native', 
-    logo: reactNativeLogo, 
-    category: 'Mobile',
-    proficiency: 50,
-    color: 'from-blue-400 to-cyan-500',
-    description: 'Cross-platform mobile app development with React'
+    logo: reactNativeLogo,
+    category: 'Mobile'
   },
   { 
     name: 'Flutter', 
-    logo: flutterLogo, 
-    category: 'Mobile',
-    proficiency: 50,
-    color: 'from-blue-400 to-teal-500',
-    description: 'UI toolkit for building natively compiled applications'
+    logo: flutterLogo,
+    category: 'Mobile'
   },
   { 
-    name: 'Node JS', 
-    logo: nodejsLogo, 
-    category: 'Backend',
-    proficiency: 85,
-    color: 'from-green-500 to-emerald-600',
-    description: 'RESTful APIs, middleware, authentication'
+    name: 'Node.js', 
+    logo: nodejsLogo,
+    category: 'Backend'
   },
   { 
-    name: 'Express JS', 
-    logo: expressjsLogo, 
-    category: 'Backend',
-    proficiency: 83,
-    color: 'from-gray-600 to-gray-800',
-    description: 'Routing, middleware, API design'
+    name: 'Express', 
+    logo: expressjsLogo,
+    category: 'Backend'
   },
   { 
     name: 'MongoDB', 
-    logo: mongodbLogo, 
-    category: 'Database',
-    proficiency: 80,
-    color: 'from-green-600 to-green-800',
-    description: 'Schema design, aggregation, indexing'
+    logo: mongodbLogo,
+    category: 'Database'
   },
   { 
     name: 'SQL', 
-    logo: sql, 
-    category: 'Database',
-    proficiency: 78,
-    color: 'from-blue-600 to-blue-800',
-    description: 'Queries, joins, database design'
+    logo: sqlLogo,
+    category: 'Database'
   },
   { 
     name: 'Python', 
-    logo: pythonLogo, 
-    category: 'Programming',
-    proficiency: 75,
-    color: 'from-blue-500 to-yellow-500',
-    description: 'Data analysis, automation, web scraping'
+    logo: pythonLogo,
+    category: 'Programming'
   },
   { 
     name: 'Java', 
-    logo: javaLogo, 
-    category: 'Programming',
-    proficiency: 70,
-    color: 'from-red-500 to-orange-500',
-    description: 'OOP, enterprise applications, Android'
+    logo: javaLogo,
+    category: 'Programming'
   },
   { 
     name: 'C', 
-    logo: cLogo, 
-    category: 'Programming',
-    proficiency: 65,
-    color: 'from-blue-400 to-blue-600',
-    description: 'Memory management, algorithms, system programming'
+    logo: cLogo,
+    category: 'Programming'
   },
   { 
     name: 'C++', 
-    logo: cppLogo, 
-    category: 'Programming',
-    proficiency: 68,
-    color: 'from-blue-500 to-blue-700',
-    description: 'OOP, STL, game development basics'
+    logo: cppLogo,
+    category: 'Programming'
   },
 ];
 
-// Get unique categories
 const categories = ['All', ...new Set(skills.map(skill => skill.category))];
 
 export default function Skills() {
   const [activeCategory, setActiveCategory] = useState('All');
   const [hoveredSkill, setHoveredSkill] = useState(null);
+  const [isVisible, setIsVisible] = useState(false);
 
-  // Filter skills based on active category
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    const skillsSection = document.getElementById('skills');
+    if (skillsSection) observer.observe(skillsSection);
+
+    return () => observer.disconnect();
+  }, []);
+
   const filteredSkills = activeCategory === 'All' 
     ? skills 
     : skills.filter(skill => skill.category === activeCategory);
 
   return (
-    <div id="skills" className="min-h-screen bg-gray-950 py-16 relative overflow-hidden">
-      {/* Background elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-full bg-gradient-radial from-blue-900/5 to-transparent"></div>
+    <div id="skills" className="min-h-screen bg-gray-50 py-20 relative overflow-hidden">
+      {/* Subtle background pattern */}
+      <div className="absolute inset-0 opacity-[0.02]">
+        <div className="w-full h-full" style={{
+          backgroundImage: `linear-gradient(45deg, black 1px, transparent 1px), linear-gradient(-45deg, black 1px, transparent 1px)`,
+          backgroundSize: '20px 20px'
+        }} />
       </div>
 
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-16">
-          <h2 className="inline-block text-5xl sm:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 mb-4 relative">
-            My Skills
-            <div className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full"></div>
+      <div className="max-w-7xl mx-auto px-6 sm:px-12 relative">
+        {/* Header */}
+        <div 
+          className={`text-center mb-16 transition-all duration-1000 ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+        >
+          <h2 className="text-5xl sm:text-6xl lg:text-7xl font-light text-gray-900 tracking-tight mb-4">
+            Skills
           </h2>
-          <p className="text-gray-300 text-xl max-w-2xl mx-auto mt-6">
-            A collection of technologies I've mastered throughout my journey as a developer.
+          <div className="w-16 h-0.5 bg-black mx-auto mb-6" />
+          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+            Technologies I've mastered throughout my development journey.
+          </p>
+          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+            These are the tools I’ve mastered... and now occasionally supervise while AI does the real work 😁.
           </p>
         </div>
 
-        {/* Category filter */}
-        <div className="flex flex-wrap justify-center gap-3 mb-12">
+        {/* Category Filter */}
+        <div 
+          className={`flex flex-wrap justify-center gap-4 mb-12 transition-all duration-1000 delay-300 ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+          }`}
+        >
           {categories.map(category => (
             <button
               key={category}
               onClick={() => setActiveCategory(category)}
-              className={`px-5 py-2 rounded-full transition-all duration-300 ${
+              className={`px-6 py-2 text-sm font-medium transition-all duration-300 ${
                 activeCategory === category
-                  ? 'bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-bold shadow-lg shadow-cyan-500/25'
-                  : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
+                  ? 'text-gray-900 border-b-2 border-black'
+                  : 'text-gray-500 hover:text-gray-700 border-b-2 border-transparent'
               }`}
             >
               {category}
@@ -180,77 +167,62 @@ export default function Skills() {
           ))}
         </div>
 
-        {/* Skills grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+        {/* Skills Grid */}
+        <div 
+          className={`grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6 transition-all duration-1000 delay-500 ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+        >
           {filteredSkills.map((skill, index) => (
             <div
               key={skill.name}
-              className="relative group"
-              data-aos="zoom-in"
-              data-aos-delay={index * 50}
+              className="group cursor-default"
               onMouseEnter={() => setHoveredSkill(skill.name)}
               onMouseLeave={() => setHoveredSkill(null)}
+              style={{ 
+                transitionDelay: `${index * 50}ms` 
+              }}
             >
-              <div className={`absolute inset-0 bg-gradient-to-br ${skill.color} rounded-xl opacity-0 group-hover:opacity-100 blur transition-opacity duration-300`}></div>
-              <div className="relative bg-gray-800/90 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-700 transition-all duration-500 hover:transform hover:scale-105 hover:shadow-xl z-10">
-                <div className={`absolute top-0 left-0 h-1 bg-gradient-to-r ${skill.color} w-full transform origin-left transition-transform duration-1000 scale-x-0 group-hover:scale-x-100`}></div>
-                
-                <div className="p-6">
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="relative w-16 h-16 p-3 bg-gray-700/50 rounded-lg overflow-hidden">
-                      <img
-                        src={skill.logo}
-                        alt={skill.name}
-                        className="w-full h-full object-contain filter drop-shadow-lg transition-transform duration-300 group-hover:scale-110"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-br from-transparent to-black/10 rounded-lg"></div>
-                    </div>
-                    <div className="text-right">
-                      <span className="text-xs font-medium text-gray-400">{skill.category}</span>
-                      <h3 className={`text-xl font-bold ${hoveredSkill === skill.name ? 'text-transparent bg-clip-text bg-gradient-to-r ' + skill.color : 'text-white'}`}>
-                        {skill.name}
-                      </h3>
-                    </div>
-                  </div>
-                  
-                  {/* Proficiency bar */}
-                  <div className="mt-4 mb-3">
-                    <div className="flex justify-between text-xs mb-1">
-                      <span className="text-gray-400">Proficiency</span>
-                      <span className="text-gray-300 font-medium">{skill.proficiency}%</span>
-                    </div>
-                    <div className="w-full h-2 bg-gray-700 rounded-full overflow-hidden">
-                      <div 
-                        className={`h-full rounded-full bg-gradient-to-r ${skill.color} transition-all duration-1000 ease-out`} 
-                        style={{ 
-                          width: hoveredSkill === skill.name ? `${skill.proficiency}%` : '15%',
-                        }}
-                      ></div>
-                    </div>
-                  </div>
-                  
-                  {/* Skill description */}
-                  <p className="text-gray-400 text-sm mt-4 min-h-[40px]">
-                    {skill.description}
-                  </p>
+              <div className="relative p-6 bg-white border border-gray-100 rounded-lg transition-all duration-300 hover:shadow-lg hover:border-gray-200 hover:-translate-y-1">
+                {/* Skill Logo */}
+                <div className="w-12 h-12 mx-auto mb-3 p-2 bg-gray-50 rounded-lg flex items-center justify-center transition-all duration-300 group-hover:bg-gray-100 group-hover:scale-110">
+                  <img 
+                    src={skill.logo} 
+                    alt={skill.name}
+                    className="w-full h-full object-contain"
+                    onError={(e) => {
+                      // Fallback if image fails to load
+                      e.target.style.display = 'none';
+                    }}
+                  />
                 </div>
+                
+                {/* Skill Name */}
+                <h3 className="text-center text-sm font-medium text-gray-900 mb-1">
+                  {skill.name}
+                </h3>
+                
+                {/* Category */}
+                <p className="text-center text-xs text-gray-500">
+                  {skill.category}
+                </p>
+                
+                {/* Hover indicator */}
+                <div className={`absolute bottom-0 left-0 h-0.5 bg-black transition-all duration-300 ${
+                  hoveredSkill === skill.name ? 'w-full' : 'w-0'
+                }`} />
               </div>
             </div>
           ))}
         </div>
+
+        {/* Bottom decorative line */}
+        <div 
+          className={`mt-20 w-full h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent transition-all duration-1000 delay-700 ${
+            isVisible ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-0'
+          }`}
+        />
       </div>
-      
-      {/* Radial gradient for background */}
-      <style jsx>{`
-        @keyframes float {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-10px); }
-        }
-        
-        .bg-gradient-radial {
-          background-image: radial-gradient(var(--tw-gradient-stops));
-        }
-      `}</style>
     </div>
   );
 }

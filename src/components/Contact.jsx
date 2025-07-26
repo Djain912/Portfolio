@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaGithub, FaLinkedin, FaTwitter, FaInstagram, FaWhatsapp, FaEnvelope, FaMapMarkerAlt, FaPhone } from 'react-icons/fa';
 
 export default function Contact() {
@@ -14,6 +14,25 @@ export default function Contact() {
     isError: false,
     message: ""
   });
+
+  const [isVisible, setIsVisible] = useState(false);
+  const [hoveredSocial, setHoveredSocial] = useState(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    const contactSection = document.getElementById('contact');
+    if (contactSection) observer.observe(contactSection);
+
+    return () => observer.disconnect();
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -100,183 +119,210 @@ export default function Contact() {
     }
   };
 
+  const socialLinks = [
+    {
+      name: "GitHub",
+      icon: FaGithub,
+      url: "https://github.com/Djain912",
+      hoverColor: "hover:bg-gray-900"
+    },
+    {
+      name: "LinkedIn",
+      icon: FaLinkedin,
+      url: "https://www.linkedin.com/in/darshanjain912/",
+      hoverColor: "hover:bg-blue-600"
+    },
+    {
+      name: "Twitter",
+      icon: FaTwitter,
+      url: "https://x.com/djain93260",
+      hoverColor: "hover:bg-gray-900"
+    },
+    {
+      name: "WhatsApp",
+      icon: FaWhatsapp,
+      url: "https://wa.me/9321176546",
+      hoverColor: "hover:bg-green-500"
+    },
+    {
+      name: "Instagram",
+      icon: FaInstagram,
+      url: "https://www.instagram.com/darshanjain912?igsh=Y2tpa2NqMmhneWFv",
+      hoverColor: "hover:bg-pink-500"
+    },
+    {
+      name: "Email",
+      icon: FaEnvelope,
+      url: "mailto:djain93260@gmail.com",
+      hoverColor: "hover:bg-red-500"
+    }
+  ];
+
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-black py-16 px-4 relative overflow-hidden" id="contact">
-      {/* Background elements */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0 opacity-20">
-        <div className="absolute h-64 w-64 rounded-full bg-cyan-500 blur-3xl -top-20 -left-20"></div>
-        <div className="absolute h-64 w-64 rounded-full bg-purple-500 blur-3xl bottom-20 right-20"></div>
-        <div className="absolute h-96 w-96 rounded-full bg-blue-500 blur-3xl top-1/2 left-1/3 transform -translate-x-1/2 -translate-y-1/2"></div>
+    <section id="contact" className="min-h-screen bg-white py-20 relative overflow-hidden">
+      {/* Subtle background pattern */}
+      <div className="absolute inset-0 opacity-[0.015]">
+        <div className="w-full h-full" style={{
+          backgroundImage: `radial-gradient(circle at 2px 2px, black 1px, transparent 0)`,
+          backgroundSize: '30px 30px'
+        }} />
       </div>
 
-      <div className="container mx-auto text-center relative z-10 max-w-6xl">
-        <div data-aos="fade-up" data-aos-duration="800">
-          <h2 className="text-6xl font-bold mb-3 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">Contact Me</h2>
-          <div className="h-1 w-24 bg-gradient-to-r from-cyan-400 to-blue-500 mx-auto mb-8 rounded-full"></div>
-          <p className="text-xl text-gray-300 mb-12 max-w-2xl mx-auto">
-            Ready to collaborate? I'm just a message away. Reach out through any of these channels:
+      <div className="max-w-7xl mx-auto px-6 sm:px-12 relative">
+        {/* Header */}
+        <div 
+          className={`text-center mb-16 transition-all duration-1000 ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+        >
+          <h2 className="text-5xl sm:text-6xl lg:text-7xl font-light text-gray-900 tracking-tight mb-4">
+            Contact
+          </h2>
+          <div className="w-16 h-0.5 bg-black mx-auto mb-6" />
+          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+            Ready to collaborate? Let's connect and discuss your next project
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 items-stretch">
-          {/* Contact Information Card */}
-          <div className="lg:col-span-2" data-aos="fade-right" data-aos-delay="200">
-            <div className="bg-gray-800/60 backdrop-blur-lg p-8 rounded-2xl shadow-xl border border-gray-700 h-full transform transition-all duration-300 hover:shadow-cyan-500/20 hover:border-cyan-500/50">
-              <h3 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500 mb-6">Get in Touch</h3>
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 items-start">
+          {/* Contact Information */}
+          <div 
+            className={`lg:col-span-2 transition-all duration-1000 delay-200 ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}
+          >
+            <div className="bg-white border border-gray-100 rounded-sm p-8 transition-all duration-500 hover:shadow-xl hover:border-gray-200 hover:-translate-y-1">
+              <h3 className="text-2xl font-medium text-gray-900 mb-8">Get in Touch</h3>
               
-              <div className="space-y-4">
-                <div className="flex items-center gap-3 text-left">
-                  <div className="bg-gray-700 p-3 rounded-lg text-cyan-400">
-                    <FaMapMarkerAlt className="text-xl" />
+              <div className="space-y-6">
+                <div className="flex items-start gap-4">
+                  <div className="bg-gray-50 p-3 rounded-sm border border-gray-100">
+                    <FaMapMarkerAlt className="text-lg text-gray-600" />
                   </div>
                   <div>
-                    <p className="text-gray-400 text-sm">Location</p>
-                    <p className="text-white font-medium">Mumbai, Maharashtra</p>
+                    <p className="text-gray-500 text-sm mb-1">Location</p>
+                    <p className="text-gray-900 font-medium">Mumbai, Maharashtra</p>
                   </div>
                 </div>
                 
-                <div className="flex items-center gap-3 text-left">
-                  <div className="bg-gray-700 p-3 rounded-lg text-cyan-400">
-                    <FaPhone className="text-xl" />
+                <div className="flex items-start gap-4">
+                  <div className="bg-gray-50 p-3 rounded-sm border border-gray-100">
+                    <FaPhone className="text-lg text-gray-600" />
                   </div>
                   <div>
-                    <p className="text-gray-400 text-sm">Phone</p>
-                    <p className="text-white font-medium">+91 9321176546</p>
+                    <p className="text-gray-500 text-sm mb-1">Phone</p>
+                    <a href="tel:+919321176546" className="text-gray-900 font-medium hover:text-gray-600 transition-colors">
+                      +91 9321176546
+                    </a>
                   </div>
                 </div>
                 
-                <div className="flex items-center gap-3 text-left">
-                  <div className="bg-gray-700 p-3 rounded-lg text-cyan-400">
-                    <FaEnvelope className="text-xl" />
+                <div className="flex items-start gap-4">
+                  <div className="bg-gray-50 p-3 rounded-sm border border-gray-100">
+                    <FaEnvelope className="text-lg text-gray-600" />
                   </div>
                   <div>
-                    <p className="text-gray-400 text-sm">Email</p>
-                    <a href="mailto:djain932110@gmail.com" className="text-white font-medium hover:text-cyan-400 transition-colors">djain93260@gmail.com</a>
+                    <p className="text-gray-500 text-sm mb-1">Email</p>
+                    <a href="mailto:djain93260@gmail.com" className="text-gray-900 font-medium hover:text-gray-600 transition-colors">
+                      djain93260@gmail.com
+                    </a>
                   </div>
                 </div>
                 
-                <div className="flex items-center gap-3 text-left">
-                  <div className="bg-gray-700 p-3 rounded-lg text-cyan-400">
-                    <FaWhatsapp className="text-xl" />
+                <div className="flex items-start gap-4">
+                  <div className="bg-gray-50 p-3 rounded-sm border border-gray-100">
+                    <FaWhatsapp className="text-lg text-gray-600" />
                   </div>
                   <div>
-                    <p className="text-gray-400 text-sm">WhatsApp</p>
-                    <a href="https://wa.me/9321176546" className="text-white font-medium hover:text-cyan-400 transition-colors">+91 9321176546</a>
+                    <p className="text-gray-500 text-sm mb-1">WhatsApp</p>
+                    <a href="https://wa.me/9321176546" className="text-gray-900 font-medium hover:text-gray-600 transition-colors">
+                      +91 9321176546
+                    </a>
                   </div>
+                </div>
+              </div>
+
+              {/* Social Links */}
+              <div className="mt-8 pt-8 border-t border-gray-100">
+                <p className="text-gray-500 text-sm mb-4">Connect with me</p>
+                <div className="grid grid-cols-3 gap-3">
+                  {socialLinks.map((social, index) => (
+                    <a
+                      key={social.name}
+                      href={social.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group flex flex-col items-center"
+                      onMouseEnter={() => setHoveredSocial(index)}
+                      onMouseLeave={() => setHoveredSocial(null)}
+                    >
+                      <div className={`bg-gray-50 border border-gray-100 p-3 rounded-sm transition-all duration-300 group-hover:bg-gray-900 group-hover:text-white group-hover:-translate-y-1 ${social.hoverColor}`}>
+                        <social.icon className="text-lg" />
+                      </div>
+                      <span className="text-xs text-gray-500 mt-2 group-hover:text-gray-900 transition-colors">
+                        {social.name}
+                      </span>
+                    </a>
+                  ))}
                 </div>
               </div>
             </div>
           </div>
           
-          {/* Social Media Links and Contact Form */}
-          <div className="lg:col-span-3" data-aos="fade-left" data-aos-delay="400">
-            <div className="bg-gray-800/60 backdrop-blur-lg p-8 rounded-2xl shadow-xl border border-gray-700 h-full transform transition-all duration-300 hover:shadow-cyan-500/20 hover:border-cyan-500/50">
-              <h3 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500 mb-6">Connect with Me</h3>
+          {/* Contact Form */}
+          <div 
+            className={`lg:col-span-3 transition-all duration-1000 delay-400 ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}
+          >
+            <div className="bg-white border border-gray-100 rounded-sm p-8 transition-all duration-500 hover:shadow-xl hover:border-gray-200 hover:-translate-y-1">
+              <h3 className="text-2xl font-medium text-gray-900 mb-8">Send a Message</h3>
               
-              <div className="grid grid-cols-3 sm:grid-cols-6 gap-4 mb-8">
-                <a 
-                  href="https://github.com/Djain912" 
-                  target='_blank' 
-                  rel="noopener noreferrer" 
-                  className="flex flex-col items-center group"
-                >
-                  <div className="bg-gray-700 p-4 rounded-lg text-white group-hover:bg-white group-hover:text-gray-900 transition-all duration-300 w-16 h-16 flex items-center justify-center mb-2 transform group-hover:-translate-y-1">
-                    <FaGithub className="text-2xl" />
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-sm text-gray-600 mb-2">Name</label>
+                    <input 
+                      type="text" 
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      className="w-full border border-gray-200 rounded-sm p-3 text-gray-900 focus:outline-none focus:border-gray-400 focus:ring-1 focus:ring-gray-400 transition-all duration-300"
+                      placeholder="Your full name"
+                    />
                   </div>
-                  <span className="text-sm text-gray-400 group-hover:text-cyan-400 transition-colors">GitHub</span>
-                </a>
-                
-                <a 
-                  href="https://www.linkedin.com/in/darshanjain912/" 
-                  target='_blank' 
-                  rel="noopener noreferrer" 
-                  className="flex flex-col items-center group"
-                >
-                  <div className="bg-gray-700 p-4 rounded-lg text-white group-hover:bg-blue-600 group-hover:text-white transition-all duration-300 w-16 h-16 flex items-center justify-center mb-2 transform group-hover:-translate-y-1">
-                    <FaLinkedin className="text-2xl" />
+                  <div>
+                    <label className="block text-sm text-gray-600 mb-2">Email</label>
+                    <input 
+                      type="email" 
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      className="w-full border border-gray-200 rounded-sm p-3 text-gray-900 focus:outline-none focus:border-gray-400 focus:ring-1 focus:ring-gray-400 transition-all duration-300"
+                      placeholder="your.email@example.com"
+                    />
                   </div>
-                  <span className="text-sm text-gray-400 group-hover:text-cyan-400 transition-colors">LinkedIn</span>
-                </a>
-                
-                <a 
-                  href="https://x.com/djain93260" 
-                  target='_blank' 
-                  rel="noopener noreferrer" 
-                  className="flex flex-col items-center group"
-                >
-                  <div className="bg-gray-700 p-4 rounded-lg text-white group-hover:bg-black group-hover:text-white transition-all duration-300 w-16 h-16 flex items-center justify-center mb-2 transform group-hover:-translate-y-1">
-                    <FaTwitter className="text-2xl" />
-                  </div>
-                  <span className="text-sm text-gray-400 group-hover:text-cyan-400 transition-colors">Twitter</span>
-                </a>
-                
-                <a 
-                  href="https://wa.me/9321176546" 
-                  target='_blank' 
-                  rel="noopener noreferrer" 
-                  className="flex flex-col items-center group"
-                >
-                  <div className="bg-gray-700 p-4 rounded-lg text-white group-hover:bg-green-500 group-hover:text-white transition-all duration-300 w-16 h-16 flex items-center justify-center mb-2 transform group-hover:-translate-y-1">
-                    <FaWhatsapp className="text-2xl" />
-                  </div>
-                  <span className="text-sm text-gray-400 group-hover:text-cyan-400 transition-colors">WhatsApp</span>
-                </a>
-                
-                <a 
-                  href="https://www.instagram.com/darshanjain912?igsh=Y2tpa2NqMmhneWFv" 
-                  target='_blank' 
-                  rel="noopener noreferrer" 
-                  className="flex flex-col items-center group"
-                >
-                  <div className="bg-gray-700 p-4 rounded-lg text-white group-hover:bg-gradient-to-br from-pink-500 via-red-500 to-yellow-500 group-hover:text-white transition-all duration-300 w-16 h-16 flex items-center justify-center mb-2 transform group-hover:-translate-y-1">
-                    <FaInstagram className="text-2xl" />
-                  </div>
-                  <span className="text-sm text-gray-400 group-hover:text-cyan-400 transition-colors">Instagram</span>
-                </a>
-                
-                <a 
-                  href="mailto:djain93260@gmail.com" 
-                  className="flex flex-col items-center group"
-                >
-                  <div className="bg-gray-700 p-4 rounded-lg text-white group-hover:bg-red-500 group-hover:text-white transition-all duration-300 w-16 h-16 flex items-center justify-center mb-2 transform group-hover:-translate-y-1">
-                    <FaEnvelope className="text-2xl" />
-                  </div>
-                  <span className="text-sm text-gray-400 group-hover:text-cyan-400 transition-colors">Email</span>
-                </a>
-              </div>
-              
-              {/* Quick Contact Form with Formspree */}
-              <form className="space-y-4 mt-8" onSubmit={handleSubmit} action="https://formspree.io/f/xgvaezdp" method="POST">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <input 
-                    type="text" 
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    placeholder="Your Name" 
-                    className="bg-gray-900/80 border border-gray-700 rounded-lg p-3 text-white focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all duration-300 w-full"
-                  />
-                  <input 
-                    type="email" 
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    placeholder="Your Email" 
-                    className="bg-gray-900/80 border border-gray-700 rounded-lg p-3 text-white focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all duration-300 w-full"
-                  />
                 </div>
-                <textarea 
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  placeholder="Your Message" 
-                  rows="4" 
-                  className="bg-gray-900/80 border border-gray-700 rounded-lg p-3 text-white focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition-all duration-300 w-full"
-                ></textarea>
+                
+                <div>
+                  <label className="block text-sm text-gray-600 mb-2">Message</label>
+                  <textarea 
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    rows="6"
+                    className="w-full border border-gray-200 rounded-sm p-3 text-gray-900 focus:outline-none focus:border-gray-400 focus:ring-1 focus:ring-gray-400 transition-all duration-300 resize-none"
+                    placeholder="Tell me about your project or just say hello..."
+                  ></textarea>
+                </div>
                 
                 {/* Status message */}
                 {formStatus.message && (
-                  <div className={`rounded-lg p-3 text-sm ${formStatus.isError ? 'bg-red-500/20 text-red-200' : 'bg-green-500/20 text-green-200'}`}>
+                  <div className={`rounded-sm p-3 text-sm border ${
+                    formStatus.isError 
+                      ? 'bg-red-50 text-red-600 border-red-200' 
+                      : 'bg-green-50 text-green-600 border-green-200'
+                  }`}>
                     {formStatus.message}
                   </div>
                 )}
@@ -284,7 +330,9 @@ export default function Contact() {
                 <button 
                   type="submit" 
                   disabled={formStatus.isSubmitting}
-                  className={`bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-medium py-3 px-6 rounded-lg transition-all duration-300 transform hover:-translate-y-1 w-full sm:w-auto ${formStatus.isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
+                  className={`bg-gray-900 text-white px-8 py-3 rounded-sm transition-all duration-300 hover:bg-gray-700 hover:scale-105 ${
+                    formStatus.isSubmitting ? 'opacity-70 cursor-not-allowed' : ''
+                  }`}
                 >
                   {formStatus.isSubmitting ? 'Sending...' : 'Send Message'}
                 </button>
@@ -292,7 +340,14 @@ export default function Contact() {
             </div>
           </div>
         </div>
+
+        {/* Bottom decorative line */}
+        <div 
+          className={`mt-20 w-full h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent transition-all duration-1000 delay-700 ${
+            isVisible ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-0'
+          }`}
+        />
       </div>
-    </div>
+    </section>
   );
 }
