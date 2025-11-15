@@ -306,6 +306,73 @@ export default function About() {
           }
         `}
       </style>
+
+      {/* Hidden SEO content for About section */}
+      <div className="sr-only" aria-hidden="true">
+        <h2>About Darshan Jain - Professional Full Stack Developer</h2>
+        <p>
+          Darshan Jain is a passionate and dedicated Full Stack Web Developer from Mumbai, India, with comprehensive 
+          experience in building modern, scalable, and responsive web applications. With a strong foundation in both 
+          frontend and backend technologies, Darshan excels at transforming ideas into fully functional digital solutions.
+        </p>
+        <h3>Professional Journey</h3>
+        <p>
+          Darshan's journey in software development began during his academic years at Thadomal Shahani Engineering College, 
+          where he pursued Computer Engineering. His passion for coding and problem-solving led him to intern at Elight Labs 
+          as a Full Stack Developer in June-July 2023, where he gained valuable hands-on experience in remote work and 
+          professional software development practices.
+        </p>
+        <p>
+          Currently, Darshan serves as a Full Stack Developer Intern at ZootechX (September 2025 - Present), working in 
+          a hybrid environment where he contributes to building innovative solutions using cutting-edge technologies. 
+          His role involves developing scalable web applications, implementing responsive designs, and integrating 
+          various APIs and services.
+        </p>
+        <h3>Technical Skills and Expertise</h3>
+        <p>
+          Darshan possesses a diverse skill set spanning multiple programming languages and frameworks. His expertise 
+          includes React.js for building dynamic user interfaces, Node.js and Express.js for backend development, 
+          MongoDB and MySQL for database management, and Flutter and React Native for mobile application development.
+        </p>
+        <p>
+          He is proficient in modern JavaScript (ES6+), TypeScript for type-safe code, Python for scripting and data 
+          manipulation, and various CSS frameworks including Tailwind CSS and Bootstrap for responsive design. 
+          Darshan also has experience with version control using Git and GitHub, deployment platforms like Netlify and 
+          Vercel, and cloud services including Firebase and AWS.
+        </p>
+        <h3>Problem-Solving and Innovation</h3>
+        <p>
+          With a keen eye for detail and a commitment to excellence, Darshan approaches every project with a 
+          problem-solving mindset. He believes in writing clean, maintainable code and following best practices 
+          in software development. His ability to quickly learn new technologies and adapt to changing requirements 
+          makes him a valuable asset to any development team.
+        </p>
+        <h3>Achievements and Recognition</h3>
+        <p>
+          Darshan's technical prowess has been recognized through multiple achievements, including winning the 
+          Codeissance Hackathon in the Industry Domain with the LeadVault project, becoming a finalist in Smart India 
+          Hackathon 2025 with CivicConnect, and showcasing the innovative Attendify project at the Tantravihar state-level 
+          tech fest. These accomplishments demonstrate his ability to deliver high-quality solutions under pressure and 
+          collaborate effectively with team members.
+        </p>
+        <h3>Work Philosophy</h3>
+        <p>
+          Darshan believes in continuous learning and staying updated with the latest trends in web development. 
+          He is passionate about creating user-centric applications that not only meet technical requirements but 
+          also provide exceptional user experiences. His approach combines technical expertise with creative 
+          problem-solving to deliver solutions that exceed expectations.
+        </p>
+        <h3>Collaboration and Communication</h3>
+        <p>
+          As a team player, Darshan excels in collaborative environments, working effectively with designers, 
+          product managers, and fellow developers. His strong communication skills enable him to articulate 
+          technical concepts clearly and contribute to productive discussions about architecture and implementation strategies.
+        </p>
+        <p>
+          Darshan Jain is committed to building the future of web and mobile applications, one line of code at a time.
+          His portfolio showcases over 15 completed projects demonstrating proficiency across the full development stack.
+        </p>
+      </div>
     </div>
   );
 }

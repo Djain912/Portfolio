@@ -1,6 +1,16 @@
 import React, { useState, useEffect } from 'react';
 
 export default function Home() {
+  // Add SEO-rich hidden content for search engines
+  useEffect(() => {
+    // Set page-specific meta description
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 
+        'Darshan Jain - Award-winning Full Stack Developer from Mumbai. Codeissance Hackathon Winner 🏆 | ZootechX Intern | Expert in React, Node.js, MongoDB, Flutter & React Native. 15+ projects showcase cutting-edge web & mobile applications.'
+      );
+    }
+  }, []);
   const [isVisible, setIsVisible] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
@@ -467,6 +477,80 @@ export default function Home() {
           }
         }
       `}</style>
+
+      {/* Hidden SEO-rich content for search engines */}
+      <div className="sr-only" aria-hidden="true">
+        <h1>Darshan Jain - Full Stack Developer Portfolio</h1>
+        <h2>Award-Winning Web Developer and Mobile App Developer from Mumbai, India</h2>
+        <p>
+          Welcome to the portfolio of Darshan Jain, a talented Full Stack Developer specializing in modern web technologies 
+          and mobile application development. Based in Mumbai, Maharashtra, India, Darshan has earned recognition as the 
+          Codeissance Hackathon Winner in the Industry Domain and is a Smart India Hackathon 2025 Finalist.
+        </p>
+        <h3>Professional Experience</h3>
+        <p>
+          Currently working as a Full Stack Developer Intern at ZootechX (September 2025 - Present) in a hybrid role, 
+          and previously interned at Elight Labs (June-July 2023) as a remote Full Stack Developer. Darshan brings hands-on 
+          experience in building scalable, responsive, and user-friendly applications.
+        </p>
+        <h3>Technical Expertise</h3>
+        <ul>
+          <li>Frontend Development: React.js, React Native, Flutter, HTML5, CSS3, JavaScript, TypeScript, Tailwind CSS, Bootstrap</li>
+          <li>Backend Development: Node.js, Express.js, REST APIs, GraphQL, Microservices</li>
+          <li>Database Management: MongoDB, MySQL, Firebase, PostgreSQL</li>
+          <li>Mobile Development: React Native, Flutter, Dart, Progressive Web Apps (PWA)</li>
+          <li>Tools & Technologies: Git, GitHub, Docker, Vercel, Netlify, AWS, Redux, Webpack, Vite</li>
+          <li>AI/ML Integration: TensorFlow, Machine Learning, Computer Vision, Face Recognition</li>
+        </ul>
+        <h3>Notable Projects</h3>
+        <ul>
+          <li>LeadVault - Hackathon-winning enterprise lead management system with Two-Factor Authentication and PWA</li>
+          <li>CivicConnect - Smart civic issue reporting platform for Smart India Hackathon 2025 with AI-powered detection</li>
+          <li>Attendify - Revolutionary attendance management system eliminating proxy attendance with facial recognition</li>
+          <li>INNOVEST - Published research platform bridging startups and investors with AI matchmaking</li>
+          <li>CodeItUp - Full-stack blogging platform for developers with rich-text editor and newsletter integration</li>
+          <li>Python Typing Speed Test - Interactive desktop application with dynamic Wikipedia content</li>
+        </ul>
+        <h3>Awards and Recognition</h3>
+        <ul>
+          <li>Codeissance Hackathon Winner - Industry Domain (2025) - Thadomal Shahani Engineering College</li>
+          <li>Smart India Hackathon 2025 Finalist - CivicConnect Project</li>
+          <li>Tantravihar Tech Fest Participant - Attendify Project Showcase</li>
+          <li>Academic Excellence Award</li>
+        </ul>
+        <h3>Education</h3>
+        <p>
+          Computer Engineering Student at Thadomal Shahani Engineering College (TSEC), Mumbai. Focused on 
+          Full Stack Web Development, Mobile Application Development, and emerging technologies.
+        </p>
+        <h3>Services Offered</h3>
+        <p>
+          Darshan Jain offers professional web development and mobile app development services including:
+          Custom website development, E-commerce solutions, Progressive Web Apps, Mobile applications for iOS and Android,
+          REST API development, Database design and optimization, UI/UX implementation, Full stack consulting,
+          and Technical mentorship.
+        </p>
+        <h3>Contact Information</h3>
+        <p>
+          Email: djain93260@gmail.com | Phone: +91-8591496182 | Location: Mumbai, Maharashtra, India
+        </p>
+        <p>
+          Connect with Darshan Jain on LinkedIn (linkedin.com/in/darshanjain912), 
+          GitHub (github.com/Djain912), Twitter (@djain93260), and Instagram (@darshanjain912).
+        </p>
+        <h3>Keywords</h3>
+        <p>
+          Darshan Jain, Full Stack Developer, Web Developer Mumbai, React Developer, Node.js Expert, 
+          MongoDB Developer, Flutter Developer, React Native Developer, Mobile App Developer India, 
+          Hackathon Winner, Codeissance Winner, ZootechX Intern, TSEC Student, JavaScript Developer, 
+          TypeScript Developer, Frontend Developer, Backend Developer, MERN Stack Developer, 
+          Software Engineer, Programmer Portfolio, Web Development Services, Hire Developer Mumbai, 
+          Freelance Developer India, LeadVault Project, CivicConnect App, Smart India Hackathon, 
+          Progressive Web Apps, REST API Development, Database Design, UI UX Developer, 
+          Responsive Web Design, Modern Web Development, Tech Enthusiast, Problem Solver,
+          Computer Engineering Student, AI ML Integration, TensorFlow Developer, Firebase Expert
+        </p>
+      </div>
     </div>
   );
 }
