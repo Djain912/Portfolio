@@ -1,137 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
-        xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
-  
-  <!-- Homepage -->
-  <url>
-    <loc>https://darshanjainportfolio.netlify.app/</loc>
-    <lastmod>2025-11-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-    <image:image>
-      <image:loc>https://darshanjainportfolio.netlify.app/src/assets/ME.jpg</image:loc>
-      <image:title>Darshan Jain - Full Stack Developer</image:title>
-      <image:caption>Award-winning Full Stack Developer from Mumbai</image:caption>
-    </image:image>
-  </url>
-  
-  <!-- About Section -->
-  <url>
-    <loc>https://darshanjainportfolio.netlify.app/#about-me</loc>
-    <lastmod>2025-11-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  
-  <!-- Experience Section -->
-  <url>
-    <loc>https://darshanjainportfolio.netlify.app/#experience</loc>
-    <lastmod>2025-11-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  
-  <!-- Skills Section -->
-  <url>
-    <loc>https://darshanjainportfolio.netlify.app/#skills</loc>
-    <lastmod>2025-11-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <!-- Projects Section -->
-  <url>
-    <loc>https://darshanjainportfolio.netlify.app/#projects</loc>
-    <lastmod>2025-11-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  
-  <!-- LeadVault Project -->
-  <url>
-    <loc>https://github.com/AnishBandal/codeissance-2025</loc>
-    <lastmod>2025-11-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <!-- CivicConnect Project -->
-  <url>
-    <loc>https://github.com/atharvagitaye/SIH-2025</loc>
-    <lastmod>2025-11-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <!-- Python Typing Speed Test -->
-  <url>
-    <loc>https://github.com/Djain912/python-typing-speed-test</loc>
-    <lastmod>2025-11-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <!-- CodeItUp Blog -->
-  <url>
-    <loc>https://codeitupblogs.netlify.app/</loc>
-    <lastmod>2025-11-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <!-- Publications Section -->
-  <url>
-    <loc>https://darshanjainportfolio.netlify.app/#publications</loc>
-    <lastmod>2025-11-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <!-- INNOVEST Publication -->
-  <url>
-    <loc>https://www.ijmrsetm.com/admin/img/5_INNOVEST.pdf</loc>
-    <lastmod>2025-11-15</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <!-- Awards Section -->
-  <url>
-    <loc>https://darshanjainportfolio.netlify.app/#awards</loc>
-    <lastmod>2025-11-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <!-- Contact Section -->
-  <url>
-    <loc>https://darshanjainportfolio.netlify.app/#contact</loc>
-    <lastmod>2025-11-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <!-- Social Media Profiles -->
-  <url>
-    <loc>https://github.com/Djain912</loc>
-    <lastmod>2025-11-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.linkedin.com/in/darshanjain912/</loc>
-    <lastmod>2025-11-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://x.com/djain93260</loc>
-    <lastmod>2025-11-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url>
+<loc>https://darshanjainportfolio.netlify.app/</loc>
+<lastmod>2025-11-15</lastmod>
+<changefreq>weekly</changefreq>
+<priority>1.0</priority>
+</url>
+<url>
+<loc>https://darshanjainportfolio.netlify.app/#about-me</loc>
+<lastmod>2025-11-15</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.9</priority>
+</url>
+<url>
+<loc>https://darshanjainportfolio.netlify.app/#experience</loc>
+<lastmod>2025-11-15</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.9</priority>
+</url>
+<url>
+<loc>https://darshanjainportfolio.netlify.app/#skills</loc>
+<lastmod>2025-11-15</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.8</priority>
+</url>
+<url>
+<loc>https://darshanjainportfolio.netlify.app/#projects</loc>
+<lastmod>2025-11-15</lastmod>
+<changefreq>weekly</changefreq>
+<priority>0.9</priority>
+</url>
+<url>
+<loc>https://darshanjainportfolio.netlify.app/#publications</loc>
+<lastmod>2025-11-15</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.7</priority>
+</url>
+<url>
+<loc>https://darshanjainportfolio.netlify.app/#awards</loc>
+<lastmod>2025-11-15</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.8</priority>
+</url>
+<url>
+<loc>https://darshanjainportfolio.netlify.app/#contact</loc>
+<lastmod>2025-11-15</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.8</priority>
+</url>
 </urlset>

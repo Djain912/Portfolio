@@ -1,10 +1,37 @@
 [build]
-  command = "npm run build"  # Change this based on your framework (e.g., "yarn build", "npm run generate" for Nuxt)
-  publish = "dist"  # Adjust for your framework (e.g., "build" for React, "dist" for Vue/Nuxt)
+  command = "npm run build"
+  publish = "dist"
 
 [build.environment]
-  NODE_VERSION = "18"  # Adjust based on your project requirements
+  NODE_VERSION = "18"
 
+# Headers for SEO files
+[[headers]]
+  for = "/sitemap.xml"
+  [headers.values]
+    Content-Type = "application/xml"
+    Cache-Control = "public, max-age=3600"
+
+[[headers]]
+  for = "/robots.txt"
+  [headers.values]
+    Content-Type = "text/plain"
+    Cache-Control = "public, max-age=3600"
+
+# Redirects - sitemap and robots should NOT redirect
+[[redirects]]
+  from = "/sitemap.xml"
+  to = "/sitemap.xml"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/robots.txt"
+  to = "/robots.txt"
+  status = 200
+  force = true
+
+# SPA fallback for all other routes
 [[redirects]]
   from = "/*"
   to = "/index.html"
