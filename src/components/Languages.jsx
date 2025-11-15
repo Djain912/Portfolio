@@ -96,6 +96,7 @@ export default function Skills() {
   const [activeCategory, setActiveCategory] = useState('All');
   const [hoveredSkill, setHoveredSkill] = useState(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [isFiltering, setIsFiltering] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -116,6 +117,12 @@ export default function Skills() {
   const filteredSkills = activeCategory === 'All' 
     ? skills 
     : skills.filter(skill => skill.category === activeCategory);
+    
+  const handleCategoryChange = (category) => {
+    setIsFiltering(true);
+    setActiveCategory(category);
+    setTimeout(() => setIsFiltering(false), 300);
+  };
 
   return (
     <div id="skills" className="min-h-screen bg-gray-50 py-20 relative overflow-hidden">
@@ -139,7 +146,7 @@ export default function Skills() {
           </h2>
           <div className="w-16 h-0.5 bg-black mx-auto mb-6" />
           <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-            Technologies I've mastered throughout my development journey.
+            Technologies I've learned  throughout my development journey.
           </p>
           <p className="text-gray-600 text-lg max-w-2xl mx-auto">
             These are the tools I’ve mastered... and now occasionally supervise while AI does the real work 😁.
@@ -148,18 +155,18 @@ export default function Skills() {
 
         {/* Category Filter */}
         <div 
-          className={`flex flex-wrap justify-center gap-4 mb-12 transition-all duration-1000 delay-300 ${
+          className={`flex flex-wrap justify-center gap-3 sm:gap-4 mb-12 transition-all duration-1000 delay-300 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
           }`}
         >
           {categories.map(category => (
             <button
               key={category}
-              onClick={() => setActiveCategory(category)}
-              className={`px-6 py-2 text-sm font-medium transition-all duration-300 ${
+              onClick={() => handleCategoryChange(category)}
+              className={`px-4 sm:px-6 py-2 text-xs sm:text-sm font-medium transition-all duration-300 rounded-sm ${
                 activeCategory === category
-                  ? 'text-gray-900 border-b-2 border-black'
-                  : 'text-gray-500 hover:text-gray-700 border-b-2 border-transparent'
+                  ? 'text-white bg-gray-900 shadow-md scale-105'
+                  : 'text-gray-600 bg-white border border-gray-200 hover:text-gray-900 hover:border-gray-300 hover:shadow-sm'
               }`}
             >
               {category}
@@ -169,27 +176,30 @@ export default function Skills() {
 
         {/* Skills Grid */}
         <div 
-          className={`grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6 transition-all duration-1000 delay-500 ${
+          className={`grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 sm:gap-6 transition-all duration-500 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          }`}
+          } ${isFiltering ? 'opacity-50 scale-95' : 'opacity-100 scale-100'}`}
         >
           {filteredSkills.map((skill, index) => (
             <div
               key={skill.name}
-              className="group cursor-default"
+              className={`group cursor-default transition-all duration-500 ${
+                isFiltering ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'
+              }`}
               onMouseEnter={() => setHoveredSkill(skill.name)}
               onMouseLeave={() => setHoveredSkill(null)}
               style={{ 
-                transitionDelay: `${index * 50}ms` 
+                transitionDelay: isFiltering ? '0ms' : `${index * 50}ms` 
               }}
             >
-              <div className="relative p-6 bg-white border border-gray-100 rounded-lg transition-all duration-300 hover:shadow-lg hover:border-gray-200 hover:-translate-y-1">
+              <div className="relative p-4 sm:p-6 bg-white border border-gray-100 rounded-lg transition-all duration-300 hover:shadow-lg hover:border-gray-200 hover:-translate-y-1">
                 {/* Skill Logo */}
-                <div className="w-12 h-12 mx-auto mb-3 p-2 bg-gray-50 rounded-lg flex items-center justify-center transition-all duration-300 group-hover:bg-gray-100 group-hover:scale-110">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 mx-auto mb-3 p-2 bg-gray-50 rounded-lg flex items-center justify-center transition-all duration-300 group-hover:bg-gray-100 group-hover:scale-110">
                   <img 
                     src={skill.logo} 
                     alt={skill.name}
                     className="w-full h-full object-contain"
+                    loading="lazy"
                     onError={(e) => {
                       // Fallback if image fails to load
                       e.target.style.display = 'none';
@@ -198,12 +208,12 @@ export default function Skills() {
                 </div>
                 
                 {/* Skill Name */}
-                <h3 className="text-center text-sm font-medium text-gray-900 mb-1">
+                <h3 className="text-center text-xs sm:text-sm font-medium text-gray-900 mb-1 truncate">
                   {skill.name}
                 </h3>
                 
                 {/* Category */}
-                <p className="text-center text-xs text-gray-500">
+                <p className="text-center text-xs text-gray-500 truncate">
                   {skill.category}
                 </p>
                 

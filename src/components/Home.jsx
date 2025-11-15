@@ -16,10 +16,13 @@ export default function Home() {
 
   useEffect(() => {
     const handleMouseMove = (e) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
+      // Throttle mouse move updates for better performance
+      requestAnimationFrame(() => {
+        setMousePosition({ x: e.clientX, y: e.clientY });
+      });
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
@@ -107,9 +110,9 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-white relative overflow-hidden">
-      {/* Enhanced cursor follower */}
+      {/* Enhanced cursor follower - hidden on mobile for better performance */}
       <div 
-        className={`fixed w-6 h-6 rounded-full pointer-events-none transition-all duration-300 ease-out z-50 ${
+        className={`hidden md:block fixed w-6 h-6 rounded-full pointer-events-none transition-all duration-300 ease-out z-50 ${
           isHovering ? 'bg-blue-500/50 scale-150' : 'bg-black/5'
         }`}
         style={{
@@ -161,8 +164,8 @@ export default function Home() {
         />
       </div>
 
-      {/* Dynamic grid lines that follow mouse */}
-      <div className="absolute inset-0 pointer-events-none">
+      {/* Dynamic grid lines that follow mouse - hidden on mobile */}
+      <div className="hidden md:block absolute inset-0 pointer-events-none">
         {/* Vertical line following mouse X */}
         <div 
           className="absolute top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-blue-500/20 to-transparent transition-all duration-300"
@@ -265,12 +268,12 @@ export default function Home() {
           </div>
 
           {/* Interactive buttons with grid-inspired design */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
             <button 
               onClick={handleDownload}
               onMouseEnter={() => setIsHovering(true)}
               onMouseLeave={() => setIsHovering(false)}
-              className="group relative px-8 py-3 bg-black text-white font-medium transition-all duration-300 hover:bg-gray-800 hover:scale-105 active:scale-95 overflow-hidden"
+              className="group relative px-6 sm:px-8 py-3 w-full sm:w-auto bg-black text-white font-medium transition-all duration-300 hover:bg-gray-800 hover:scale-105 active:scale-95 overflow-hidden"
               style={{
                 clipPath: 'polygon(0 0, calc(100% - 10px) 0, 100% 100%, 10px 100%)'
               }}
@@ -294,7 +297,7 @@ export default function Home() {
               onMouseEnter={() => setIsHovering(true)}
               onMouseLeave={() => setIsHovering(false)}
               onClick={scrollToContact}
-              className="group relative px-8 py-3 border border-black text-black font-medium transition-all duration-300 hover:bg-black hover:text-white hover:scale-105 active:scale-95 overflow-hidden"
+              className="group relative px-6 sm:px-8 py-3 w-full sm:w-auto border border-black text-black font-medium transition-all duration-300 hover:bg-black hover:text-white hover:scale-105 active:scale-95 overflow-hidden"
               style={{
                 clipPath: 'polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%)'
               }}
@@ -373,12 +376,12 @@ export default function Home() {
 
       {/* PDF Viewer Modal */}
       {showPdfViewer && (
-        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg shadow-2xl max-w-4xl w-full h-5/6 flex flex-col">
+        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4 sm:p-6">
+          <div className="bg-white rounded-lg shadow-2xl w-full max-w-4xl h-[90vh] sm:h-5/6 flex flex-col">
             {/* Modal Header */}
-            <div className="flex justify-between items-center p-4 border-b border-gray-200">
-              <h3 className="text-xl font-semibold text-gray-800">Resume - Darshan Jain</h3>
-              <div className="flex space-x-2">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center p-4 border-b border-gray-200 gap-3 sm:gap-0">
+              <h3 className="text-lg sm:text-xl font-semibold text-gray-800">Resume - Darshan Jain</h3>
+              <div className="flex space-x-2 w-full sm:w-auto">
                 <button
                   onClick={() => {
                     if (pdfUrl) {
@@ -388,13 +391,13 @@ export default function Home() {
                       link.click();
                     }
                   }}
-                  className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors text-sm"
+                  className="flex-1 sm:flex-none px-3 sm:px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors text-xs sm:text-sm"
                 >
                   Download PDF
                 </button>
                 <button
                   onClick={closePdfViewer}
-                  className="px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-700 transition-colors text-sm"
+                  className="flex-1 sm:flex-none px-3 sm:px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-700 transition-colors text-xs sm:text-sm"
                 >
                   Close
                 </button>
@@ -402,7 +405,7 @@ export default function Home() {
             </div>
             
             {/* PDF Viewer */}
-            <div className="flex-1 p-4">
+            <div className="flex-1 p-2 sm:p-4 overflow-hidden">
               {pdfUrl ? (
                 <iframe
                   src={`${pdfUrl}#toolbar=1&navpanes=1&scrollbar=1`}
@@ -420,7 +423,7 @@ export default function Home() {
             </div>
             
             {/* Fallback message */}
-            <div className="p-4 text-center text-gray-600 text-sm border-t border-gray-200">
+            <div className="p-3 sm:p-4 text-center text-gray-600 text-xs sm:text-sm border-t border-gray-200">
               <p>Can't view the PDF? <a href={pdfUrl || '#'} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Open in new tab</a> or download it above.</p>
             </div>
           </div>
@@ -439,7 +442,7 @@ export default function Home() {
       </div>
 
       {/* Styles for animations */}
-      <style jsx>{`
+      <style>{`
         @keyframes gradient {
           0% {
             background-position: 0% 50%;

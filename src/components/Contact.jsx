@@ -46,12 +46,44 @@ export default function Contact() {
     e.preventDefault();
     
     // Validate form
-    if (!formData.name || !formData.email || !formData.message) {
+    if (!formData.name.trim()) {
       setFormStatus({
         isSubmitting: false,
         isSubmitted: false,
         isError: true,
-        message: "Please fill in all fields"
+        message: "Please enter your name"
+      });
+      return;
+    }
+    
+    if (!formData.email.trim()) {
+      setFormStatus({
+        isSubmitting: false,
+        isSubmitted: false,
+        isError: true,
+        message: "Please enter your email"
+      });
+      return;
+    }
+    
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      setFormStatus({
+        isSubmitting: false,
+        isSubmitted: false,
+        isError: true,
+        message: "Please enter a valid email address"
+      });
+      return;
+    }
+    
+    if (!formData.message.trim()) {
+      setFormStatus({
+        isSubmitting: false,
+        isSubmitted: false,
+        isError: true,
+        message: "Please enter a message"
       });
       return;
     }
@@ -65,7 +97,7 @@ export default function Contact() {
     });
 
     try {
-      // Using Formspree instead of EmailJS
+      // Using Formspree for form submission
       const response = await fetch('https://formspree.io/f/xgvaezdp', {
         method: 'POST',
         headers: {
@@ -74,7 +106,8 @@ export default function Contact() {
         body: JSON.stringify({
           name: formData.name,
           email: formData.email,
-          message: formData.message
+          message: formData.message,
+          _subject: `Portfolio Contact from ${formData.name}`
         })
       });
       
@@ -87,7 +120,12 @@ export default function Contact() {
         isSubmitting: false,
         isSubmitted: true,
         isError: false,
-        message: "Message sent successfully!"
+        message: "✓ Message sent successfully! I'll get back to you soon."
+      });
+
+      // Celebrate with confetti!
+      import('../utils/confetti').then(({ celebrateFormSubmit }) => {
+        celebrateFormSubmit();
       });
 
       // Reset form
@@ -114,8 +152,17 @@ export default function Contact() {
         isSubmitting: false,
         isSubmitted: false,
         isError: true,
-        message: "Failed to send message. Please try again later."
+        message: "✕ Failed to send message. Please try again or contact me directly via email."
       });
+      
+      // Reset error message after 5 seconds
+      setTimeout(() => {
+        setFormStatus(prev => ({
+          ...prev,
+          isError: false,
+          message: ""
+        }));
+      }, 5000);
     }
   };
 
@@ -281,47 +328,55 @@ export default function Contact() {
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm text-gray-600 mb-2">Name</label>
+                    <label className="block text-sm text-gray-600 mb-2">Name *</label>
                     <input 
                       type="text" 
                       name="name"
                       value={formData.name}
                       onChange={handleChange}
-                      className="w-full border border-gray-200 rounded-sm p-3 text-gray-900 focus:outline-none focus:border-gray-400 focus:ring-1 focus:ring-gray-400 transition-all duration-300"
+                      disabled={formStatus.isSubmitting}
+                      className="w-full border border-gray-200 rounded-sm p-3 text-gray-900 focus:outline-none focus:border-gray-400 focus:ring-1 focus:ring-gray-400 transition-all duration-300 disabled:bg-gray-50 disabled:cursor-not-allowed"
                       placeholder="Your full name"
+                      required
                     />
                   </div>
                   <div>
-                    <label className="block text-sm text-gray-600 mb-2">Email</label>
+                    <label className="block text-sm text-gray-600 mb-2">Email *</label>
                     <input 
                       type="email" 
                       name="email"
                       value={formData.email}
                       onChange={handleChange}
-                      className="w-full border border-gray-200 rounded-sm p-3 text-gray-900 focus:outline-none focus:border-gray-400 focus:ring-1 focus:ring-gray-400 transition-all duration-300"
+                      disabled={formStatus.isSubmitting}
+                      className="w-full border border-gray-200 rounded-sm p-3 text-gray-900 focus:outline-none focus:border-gray-400 focus:ring-1 focus:ring-gray-400 transition-all duration-300 disabled:bg-gray-50 disabled:cursor-not-allowed"
                       placeholder="your.email@example.com"
+                      required
                     />
                   </div>
                 </div>
                 
                 <div>
-                  <label className="block text-sm text-gray-600 mb-2">Message</label>
+                  <label className="block text-sm text-gray-600 mb-2">Message *</label>
                   <textarea 
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
+                    disabled={formStatus.isSubmitting}
                     rows="6"
-                    className="w-full border border-gray-200 rounded-sm p-3 text-gray-900 focus:outline-none focus:border-gray-400 focus:ring-1 focus:ring-gray-400 transition-all duration-300 resize-none"
+                    className="w-full border border-gray-200 rounded-sm p-3 text-gray-900 focus:outline-none focus:border-gray-400 focus:ring-1 focus:ring-gray-400 transition-all duration-300 resize-none disabled:bg-gray-50 disabled:cursor-not-allowed"
                     placeholder="Tell me about your project or just say hello..."
+                    required
                   ></textarea>
                 </div>
                 
                 {/* Status message */}
                 {formStatus.message && (
-                  <div className={`rounded-sm p-3 text-sm border ${
+                  <div className={`rounded-sm p-3 text-sm border transition-all duration-300 ${
                     formStatus.isError 
                       ? 'bg-red-50 text-red-600 border-red-200' 
-                      : 'bg-green-50 text-green-600 border-green-200'
+                      : formStatus.isSubmitted
+                      ? 'bg-green-50 text-green-600 border-green-200'
+                      : 'bg-blue-50 text-blue-600 border-blue-200'
                   }`}>
                     {formStatus.message}
                   </div>
@@ -330,11 +385,21 @@ export default function Contact() {
                 <button 
                   type="submit" 
                   disabled={formStatus.isSubmitting}
-                  className={`bg-gray-900 text-white px-8 py-3 rounded-sm transition-all duration-300 hover:bg-gray-700 hover:scale-105 ${
-                    formStatus.isSubmitting ? 'opacity-70 cursor-not-allowed' : ''
+                  className={`bg-gray-900 text-white px-8 py-3 rounded-sm transition-all duration-300 hover:bg-gray-700 hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:bg-gray-900 ${
+                    formStatus.isSubmitting ? 'cursor-wait' : ''
                   }`}
                 >
-                  {formStatus.isSubmitting ? 'Sending...' : 'Send Message'}
+                  {formStatus.isSubmitting ? (
+                    <span className="flex items-center">
+                      <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
+                      Sending...
+                    </span>
+                  ) : (
+                    'Send Message'
+                  )}
                 </button>
               </form>
             </div>

@@ -133,14 +133,14 @@ export default function About() {
               isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
             }`}
           >
-            <div className="relative group">
+            <div className="relative group w-full max-w-md mx-auto lg:mx-0">
               {/* Main image container */}
               <div 
-                className="relative w-80 h-96 sm:w-96 sm:h-[28rem] overflow-hidden bg-gray-100 rounded-lg cursor-pointer transform transition-all duration-700 group-hover:scale-105 group-hover:-rotate-1 shadow-xl"
+                className="relative w-full aspect-[4/5] overflow-hidden bg-gray-100 rounded-lg cursor-pointer transform transition-all duration-700 group-hover:scale-105 group-hover:-rotate-1 shadow-xl"
                 onMouseEnter={() => setImageHovered(true)}
                 onMouseLeave={() => setImageHovered(false)}
               >
-                {/* Your actual image */}
+                {/* Your actual image - using try/import instead of public path */}
                 <img 
                   src="/src/assets/ME.jpg" 
                   alt="Darshan Jain - Full Stack Developer"
@@ -210,39 +210,39 @@ export default function About() {
                 </div>
               </div>
 
-              {/* Enhanced floating elements with better positioning */}
-              <div className={`absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full transition-all duration-500 flex items-center justify-center shadow-lg ${
+              {/* Enhanced floating elements - responsive positioning */}
+              <div className={`absolute -top-3 -right-3 lg:-top-4 lg:-right-4 w-12 h-12 lg:w-16 lg:h-16 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full transition-all duration-500 flex items-center justify-center shadow-lg ${
                 imageHovered ? 'scale-125 rotate-45' : 'scale-100 rotate-0'
               }`}>
-                <span className="text-2xl">✨</span>
+                <span className="text-lg lg:text-2xl">✨</span>
               </div>
               
-              <div className={`absolute -bottom-4 -left-4 w-12 h-12 bg-gradient-to-br from-green-400 to-blue-500 rounded-full transition-all duration-500 flex items-center justify-center shadow-lg ${
+              <div className={`absolute -bottom-3 -left-3 lg:-bottom-4 lg:-left-4 w-10 h-10 lg:w-12 lg:h-12 bg-gradient-to-br from-green-400 to-blue-500 rounded-full transition-all duration-500 flex items-center justify-center shadow-lg ${
                 imageHovered ? 'scale-125 -rotate-45' : 'scale-100 rotate-0'
               }`} style={{ transitionDelay: '100ms' }}>
-                <span className="text-lg">🚀</span>
+                <span className="text-base lg:text-lg">🚀</span>
               </div>
               
-              {/* Interactive tech icons with improved positioning */}
-              <div className={`absolute -right-16 top-1/2 transform -translate-y-1/2 space-y-4 transition-all duration-700 ${
-                imageHovered ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
+              {/* Interactive tech icons - responsive positioning */}
+              <div className={`absolute -right-4 lg:-right-16 top-1/2 transform -translate-y-1/2 space-y-3 lg:space-y-4 transition-all duration-700 ${
+                imageHovered ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-4 lg:translate-x-8'
               }`}>
                 {techIcons.map((tech, index) => (
                   <div 
                     key={index}
-                    className="group/icon w-14 h-14 bg-white shadow-xl rounded-full flex items-center justify-center transform transition-all duration-300 hover:scale-125 hover:shadow-2xl cursor-pointer relative border-2 border-transparent hover:border-blue-200"
+                    className="group/icon w-10 h-10 lg:w-14 lg:h-14 bg-white shadow-xl rounded-full flex items-center justify-center transform transition-all duration-300 hover:scale-125 hover:shadow-2xl cursor-pointer relative border-2 border-transparent hover:border-blue-200"
                     style={{ 
                       transitionDelay: `${tech.delay + 200}ms`,
                       zIndex: 10
                     }}
                     title={tech.name}
                   >
-                    <span className="text-xl transition-transform duration-300 group-hover/icon:scale-110">
+                    <span className="text-base lg:text-xl transition-transform duration-300 group-hover/icon:scale-110">
                       {tech.icon}
                     </span>
                     
-                    {/* Enhanced tooltip */}
-                    <div className="absolute right-full mr-4 px-3 py-2 bg-gray-900 text-white text-sm rounded-lg opacity-0 group-hover/icon:opacity-100 transition-all duration-300 whitespace-nowrap pointer-events-none shadow-xl">
+                    {/* Enhanced tooltip - hidden on mobile, shown on desktop */}
+                    <div className="hidden lg:block absolute right-full mr-4 px-3 py-2 bg-gray-900 text-white text-sm rounded-lg opacity-0 group-hover/icon:opacity-100 transition-all duration-300 whitespace-nowrap pointer-events-none shadow-xl">
                       {tech.name}
                       <div className="absolute top-1/2 right-0 transform translate-x-full -translate-y-1/2 border-4 border-transparent border-l-gray-900" />
                     </div>

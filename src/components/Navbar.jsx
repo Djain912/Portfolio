@@ -8,6 +8,7 @@ export default function Navbarr() {
   const menuItems = [
     { name: "Home", id: "home" },
     { name: "About", id: "about-me" },
+    { name: "Experience", id: "experience" },
     { name: "Skills", id: "skills" },
     { name: "Projects", id: "projects" },
     { name: "Contact", id: "contact" },
@@ -49,8 +50,12 @@ export default function Navbarr() {
     
     const element = document.getElementById(id);
     if (element) {
+      const navbarHeight = 80; // Height of navbar
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
+      
       window.scrollTo({
-        top: element.offsetTop - 80,
+        top: offsetPosition,
         behavior: "smooth"
       });
     }
@@ -103,23 +108,24 @@ export default function Navbarr() {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="md:hidden p-2 rounded-md text-gray-600 hover:text-gray-900 transition-colors duration-300"
+              className="md:hidden p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-50 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-gray-200"
               aria-label="Toggle menu"
+              aria-expanded={isMenuOpen}
             >
-              <div className="w-6 h-6 flex flex-col justify-center items-center">
+              <div className="w-6 h-6 flex flex-col justify-center items-center space-y-1">
                 <span 
-                  className={`block w-5 h-px bg-current transition-all duration-300 ${
-                    isMenuOpen ? 'rotate-45 translate-y-px' : '-translate-y-1'
+                  className={`block w-5 h-0.5 bg-current transition-all duration-300 ${
+                    isMenuOpen ? 'rotate-45 translate-y-1.5' : 'rotate-0 translate-y-0'
                   }`}
                 />
                 <span 
-                  className={`block w-5 h-px bg-current transition-all duration-300 ${
-                    isMenuOpen ? 'opacity-0' : 'opacity-100'
+                  className={`block w-5 h-0.5 bg-current transition-all duration-300 ${
+                    isMenuOpen ? 'opacity-0 scale-0' : 'opacity-100 scale-100'
                   }`}
                 />
                 <span 
-                  className={`block w-5 h-px bg-current transition-all duration-300 ${
-                    isMenuOpen ? '-rotate-45 -translate-y-px' : 'translate-y-1'
+                  className={`block w-5 h-0.5 bg-current transition-all duration-300 ${
+                    isMenuOpen ? '-rotate-45 -translate-y-1.5' : 'rotate-0 translate-y-0'
                   }`}
                 />
               </div>

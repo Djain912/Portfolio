@@ -10,10 +10,15 @@ import Footer from './components/Footer';
 import Contact from './components/Contact';
 import Publications from './components/Publications';
 import Awards from './components/Awards';
+import Experience from './components/Experience';
+import ScrollProgress from './components/ScrollProgress';
+import CursorTrail from './components/CursorTrail';
 
 function App() {
   return (
     <Router>
+      <CursorTrail />
+      <ScrollProgress />
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/home" element={
@@ -24,6 +29,9 @@ function App() {
             </section>
             <section id="about-me">
               <About />
+            </section>
+            <section id="experience">
+              <Experience />
             </section>
             <section id="skills">
               <Languages />
