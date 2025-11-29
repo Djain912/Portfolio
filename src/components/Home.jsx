@@ -70,13 +70,13 @@ export default function Home() {
 
   // Load PDF URL when component mounts
   useEffect(() => {
-    import('../assets/DarshanJainResume.pdf')
+    import('../assets/DJAINRESUME.pdf')
       .then((module) => {
         setPdfUrl(module.default);
       })
       .catch((error) => {
         console.error('Error loading PDF:', error);
-        setPdfUrl('/DarshanJainResume.pdf'); // Fallback to public folder
+        setPdfUrl('/DJAINRESUME.pdf.pdf'); // Fallback to public folder
       });
   }, []);
 
