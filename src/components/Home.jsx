@@ -70,13 +70,13 @@ export default function Home() {
 
   // Load PDF URL when component mounts
   useEffect(() => {
-    import('../assets/DJAINRESUME.pdf')
+    import('../assets/DARSHAN_JAIN_RESUME.pdf')
       .then((module) => {
         setPdfUrl(module.default);
       })
       .catch((error) => {
         console.error('Error loading PDF:', error);
-        setPdfUrl('/DJAINRESUME.pdf.pdf'); // Fallback to public folder
+        setPdfUrl('/DARSHAN_JAIN_RESUME.pdf.pdf'); // Fallback to public folder
       });
   }, []);
 
@@ -397,7 +397,7 @@ export default function Home() {
                     if (pdfUrl) {
                       const link = document.createElement('a');
                       link.href = pdfUrl;
-                      link.download = 'DarshanJainResume.pdf';
+                      link.download = 'DARSHAN_JAIN_RESUME.pdf';
                       link.click();
                     }
                   }}
