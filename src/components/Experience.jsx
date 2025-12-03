@@ -3,26 +3,44 @@ import React, { useState, useEffect } from "react";
 // Experience data
 const experiences = [
   {
-    position: "Full Stack Developer",
+    position: "Full Stack Developer Intern",
     company: "ZootechX",
     type: "Internship",
     duration: "Sep 2025 - Present",
-
-    location: "Mumbai, Maharashtra, India",
+    location: "Mumbai, India",
     workMode: "Hybrid",
     current: true,
-    logo: "https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=600"
+    logo: "https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=600",
+    companyLink: "https://www.zootechx.com/",
+    description: "Building AI-powered solutions for E-commerce, Real Estate, and ERP systems while leading client onboarding and digital transformation initiatives.",
+    technologies: ["React", "Node.js", "Python", "AI/ML", "TTS/STT", "MongoDB", "Express"],
+    responsibilities: [
+      "Engineered AI-powered chatbots for E-commerce and Real Estate, integrating TTS (Text-to-speech)/STT (Speech-to-text) and gamified UI features like 'Spin the Wheel' and product comparison tools, boosting user engagement by 30%",
+      "Developed an ERP for a Coca-Cola Distributor, automating sales, dispatch, settlement, and payroll, reducing manual processes by 40% through digital transformation",
+      "Utilized Python for PDF bill extraction and structured data parsing, cutting reporting time by 50% and improving accuracy",
+      "Led client onboarding, overseeing requirements, architecture, and deployment independently"
+    ]
   },
   {
-    position: "Web Developer",
+    position: "Web Developer Intern",
     company: "Elightlabs",
     type: "Internship",
     duration: "Jun 2023 - Jul 2023",
     period: "2 mos",
-    location: "Mumbai, Maharashtra, India",
+    location: "Mumbai, India",
     workMode: "Remote",
     current: false,
-    logo: "https://images.pexels.com/photos/1181677/pexels-photo-1181677.jpeg?auto=compress&cs=tinysrgb&w=600"
+    logo: "https://images.pexels.com/photos/1181677/pexels-photo-1181677.jpeg?auto=compress&cs=tinysrgb&w=600",
+    companyLink: "https://in.linkedin.com/company/elightlabs",
+    certificateUrl: "https://go.screenpal.com/watch/cTlniCnqdnr",
+    description: "Designed and developed dynamic, responsive web applications using modern technologies with RESTful API integration.",
+    technologies: ["HTML", "CSS", "JavaScript", "React", "Node.js", "RESTful APIs"],
+    responsibilities: [
+      "Designed and developed dynamic, responsive web applications using modern technologies",
+      "Integrated RESTful APIs to enhance functionality and streamline data flow",
+      "Ensured seamless cross-device user experiences with responsive design practices",
+      "Collaborated effectively in a remote work environment"
+    ]
   }
 ];
 
@@ -112,9 +130,24 @@ export default function Experience() {
                         />
                         <div className="absolute inset-0 flex items-center justify-center">
                           <div className="text-center">
-                            <h3 className="text-xl sm:text-2xl font-semibold text-gray-900">
-                              {exp.company}
-                            </h3>
+                            {exp.companyLink ? (
+                              <a 
+                                href={exp.companyLink}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-xl sm:text-2xl font-semibold text-gray-900 hover:text-blue-600 transition-colors duration-300 flex items-center gap-2 justify-center"
+                                onClick={(e) => e.stopPropagation()}
+                              >
+                                {exp.company}
+                                <svg className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                </svg>
+                              </a>
+                            ) : (
+                              <h3 className="text-xl sm:text-2xl font-semibold text-gray-900">
+                                {exp.company}
+                              </h3>
+                            )}
                             <p className="text-xs text-gray-600 mt-1">{exp.workMode}</p>
                           </div>
                         </div>
@@ -216,6 +249,21 @@ export default function Experience() {
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                             </svg>
                           </button>
+                        )}
+
+                        {/* Certificate Button - Only show if certificateUrl exists */}
+                        {exp.certificateUrl && (
+                          <a
+                            href={exp.certificateUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="mt-3 inline-flex items-center gap-2 px-4 py-2 text-xs sm:text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-purple-600 rounded-sm hover:from-blue-700 hover:to-purple-700 transition-all duration-300 hover:scale-105 shadow-md"
+                          >
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                            </svg>
+                            View Experience Certificate
+                          </a>
                         )}
                       </div>
 

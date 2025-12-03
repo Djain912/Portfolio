@@ -7,7 +7,7 @@ const awards = [
     issuer: "Codeissance, Thadomal Shahani Engineering College",
     date: "2025",
     description: "Won the Hackathon in the Industry Domain at Codeissance, a prestigious tech event organized by Thadomal Shahani Engineering College. Secured first place for developing LeadVault, an enterprise-grade lead management system featuring Two-Factor Authentication (2FA), role-based access control (RBAC), and Progressive Web App (PWA) capabilities with offline functionality. The project impressed judges with its robust security architecture, AI-powered lead scoring engine, real-time analytics dashboard, and scalable design suitable for both startups and enterprise-level organizations. LeadVault demonstrated excellence in solving real-world business challenges through innovative technology solutions, automated workflows, and comprehensive data protection measures that set new standards in secure lead management systems.",
-    certificateUrl: "#",
+    certificateUrl: "https://go.screenpal.com/watch/cTlniwnqdcl",
     projectName: "LeadVault",
     projectLink: "https://github.com/AnishBandal/codeissance-2025",
     badges: ["🏆 Winner", "💼 Industry Domain"]
@@ -17,14 +17,28 @@ const awards = [
     issuer: "Vidyalankar Polytechnic",
     date: "2023",
     description: "Awarded for achieving the highest percentage in Diploma in Information Technology at Vidyalankar Polytechnic. Semester 3rd - 87.63%, Semester 4th - 88.88%, Semester 5th - 91.29%.",
-    certificateUrl: "#"
+    certificateUrl: "https://go.screenpal.com/watch/cTlniFnqJRC",
+    badges: ["📚 Academic Excellence"]
   },
   {
     title: "Runner Up Award in College Project Exhibition",
     issuer: "Vidyalankar Polytechnic",
     date: "Mar 2024",
     description: "Awarded Runner ups place in the College Project Exhibition for the innovative project \"Bridging the Gap in the Startup Ecosystem.\" This project developed a platform fostering collaboration between public users, startups, and investors. Key features included AI-powered chatbot assistance, user testing opportunities, and mentorship programs. This award recognizes the project's contribution to enhancing communication, innovation, and entrepreneurial opportunities within the startup ecosystem.",
-    certificateUrl: "https://imgcdn.dev/i/Yj6B5T"
+    certificateUrl: "https://go.screenpal.com/watch/cTlniFnqJRC",
+    projectName: "INNOVEST",
+    projectLink: "https://www.ijmrsetm.com/admin/img/5_INNOVEST.pdf",
+    badges: ["🥈 Runner Up", "🚀 Innovation"]
+  },
+  {
+    title: "🌟 Tantravihar Tech Fest - Project Showcase",
+    issuer: "State-Level Tech Fest",
+    date: "2025",
+    description: "Presented Attendify, a revolutionary smart attendance management system at Tantravihar state-level tech fest. The project eliminates proxy attendance through Unique Device ID verification, facial recognition, and one-tap BLE scanning. Opened doors to implementation opportunities at broader levels and received amazing feedback from industry professionals.",
+    certificateUrl: "https://www.linkedin.com/posts/darshanjain912_attendify-tantravihar-techfest-activity-7319597990594146306-4Ms8",
+    projectName: "Attendify",
+    projectLink: "https://www.linkedin.com/posts/darshanjain912_attendify-tantravihar-techfest-activity-7319597990594146306-4Ms8",
+    badges: ["🌟 Featured", "🔐 Anti-Proxy System"]
   }
 ];
 
