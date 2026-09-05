@@ -6,19 +6,22 @@ const experiences = [
     position: "Full Stack Developer Intern",
     company: "ZootechX",
     type: "Internship",
-    duration: "Sep 2025 - Present",
+    duration: "Sep 2025 - Mar 2026",
+    period: "6 mos",
     location: "Mumbai, India",
     workMode: "Hybrid",
-    current: true,
+    current: false,
+    completed: true,
     logo: "https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=600",
     companyLink: "https://www.zootechx.com/",
-    description: "Building AI-powered solutions for E-commerce, Real Estate, and ERP systems while leading client onboarding and digital transformation initiatives.",
-    technologies: ["React", "Node.js", "Python", "AI/ML", "TTS/STT", "MongoDB", "Express"],
+    description: "Completed a 6-month internship architecting and deploying a production ERP for a Coca-Cola distributor, alongside AI-powered solutions for E-commerce and Real Estate, while independently owning client onboarding and digital transformation initiatives.",
+    technologies: ["Node.js", "Express.js", "MongoDB", "React", "React Native", "Python", "REST API", "AI/ML", "TTS/STT"],
     responsibilities: [
+      "Architected and deployed a production ERP for a Coca-Cola distributor, integrating Admin (Web), Counter Sales (Web), and Driver (Mobile) applications on a unified Node.js, Express.js, and MongoDB backend",
+      "Designed scalable REST APIs and optimized MongoDB operations using aggregation pipelines and bulk writes, improving throughput on high-volume distribution data",
+      "Automated PDF invoice parsing with Python for structured data extraction, reducing reporting turnaround by 50% and improving accuracy",
       "Engineered AI-powered chatbots for E-commerce and Real Estate, integrating TTS (Text-to-speech)/STT (Speech-to-text) and gamified UI features like 'Spin the Wheel' and product comparison tools, boosting user engagement by 30%",
-      "Developed an ERP for a Coca-Cola Distributor, automating sales, dispatch, settlement, and payroll, reducing manual processes by 40% through digital transformation",
-      "Utilized Python for PDF bill extraction and structured data parsing, cutting reporting time by 50% and improving accuracy",
-      "Led client onboarding, overseeing requirements, architecture, and deployment independently"
+      "Independently managed client onboarding, solution architecture, deployment, and production support — delivering a business-critical system now used for daily distribution operations"
     ]
   },
   {
@@ -50,6 +53,13 @@ export default function Experience() {
   const [expandedDescriptions, setExpandedDescriptions] = useState({});
 
   useEffect(() => {
+    // Guard: if IntersectionObserver is unavailable, reveal the content
+    // immediately rather than leaving it stuck at opacity-0 forever.
+    if (typeof IntersectionObserver === 'undefined') {
+      setIsVisible(true);
+      return;
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -61,6 +71,7 @@ export default function Experience() {
 
     const experienceSection = document.getElementById('experience');
     if (experienceSection) observer.observe(experienceSection);
+    else setIsVisible(true);
 
     return () => observer.disconnect();
   }, []);
@@ -73,7 +84,7 @@ export default function Experience() {
   };
 
   return (
-    <section id="experience" className="min-h-screen bg-white py-20 relative overflow-hidden">
+    <section id="experience" className="bg-white section-pad relative overflow-hidden">
       {/* Subtle background pattern */}
       <div className="absolute inset-0 opacity-[0.015]">
         <div className="w-full h-full" style={{
@@ -89,11 +100,11 @@ export default function Experience() {
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
         >
-          <h2 className="text-5xl sm:text-6xl lg:text-7xl font-light text-gray-900 tracking-tight mb-4">
+          <h2 className="section-title mb-4">
             Work Experience
           </h2>
-          <div className="w-16 h-0.5 bg-black mx-auto mb-6" />
-          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+          <div className="section-rule" />
+          <p className="section-lede">
             Professional journey and industry experience
           </p>
         </div>
@@ -120,7 +131,7 @@ export default function Experience() {
                 <div className={`md:flex md:items-center ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
                   {/* Content Card */}
                   <div className={`md:w-5/12 ${index % 2 === 0 ? 'md:pr-8' : 'md:pl-8'}`}>
-                    <div className="bg-white border border-gray-100 rounded-sm overflow-hidden transition-all duration-500 hover:shadow-xl hover:border-gray-200 hover:-translate-y-1 group">
+                    <div className="bg-white border border-gray-200/70 rounded-2xl overflow-hidden shadow-card transition-all duration-500 ease-out-expo hover:shadow-card-hover hover:border-gray-300/70 hover:-translate-y-1 group">
                       {/* Card Header */}
                       <div className="relative h-32 overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100">
                         <img
@@ -135,7 +146,7 @@ export default function Experience() {
                                 href={exp.companyLink}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="text-xl sm:text-2xl font-semibold text-gray-900 hover:text-blue-600 transition-colors duration-300 flex items-center gap-2 justify-center"
+                                className="text-fluid-h2 font-display font-semibold text-gray-900 hover:text-blue-600 transition-colors duration-300 flex items-center gap-2 justify-center"
                                 onClick={(e) => e.stopPropagation()}
                               >
                                 {exp.company}
@@ -144,7 +155,7 @@ export default function Experience() {
                                 </svg>
                               </a>
                             ) : (
-                              <h3 className="text-xl sm:text-2xl font-semibold text-gray-900">
+                              <h3 className="text-fluid-h2 font-display font-semibold text-gray-900">
                                 {exp.company}
                               </h3>
                             )}
@@ -152,11 +163,21 @@ export default function Experience() {
                           </div>
                         </div>
                         
-                        {/* Current Badge */}
+                        {/* Current / Completed Badge */}
                         {exp.current && (
                           <div className="absolute top-3 right-3">
                             <span className="px-3 py-1 text-xs font-semibold bg-green-500 text-white rounded-full shadow-md animate-pulse">
                               Current
+                            </span>
+                          </div>
+                        )}
+                        {!exp.current && exp.completed && (
+                          <div className="absolute top-3 right-3">
+                            <span className="px-3 py-1 text-xs font-semibold bg-gray-900 text-white rounded-full shadow-md flex items-center gap-1">
+                              <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                              </svg>
+                              Completed
                             </span>
                           </div>
                         )}
@@ -166,7 +187,7 @@ export default function Experience() {
                       <div className="p-6">
                         {/* Position & Type */}
                         <div className="mb-4">
-                          <h4 className="text-lg sm:text-xl font-medium text-gray-900 mb-2">
+                          <h4 className="text-fluid-h3 font-display font-medium text-gray-900 mb-2">
                             {exp.position}
                           </h4>
                           <div className="flex flex-wrap items-center gap-2 text-sm text-gray-600">
@@ -199,7 +220,7 @@ export default function Experience() {
 
                         {/* Description */}
                         {exp.description && (
-                          <p className="text-gray-600 text-sm leading-relaxed mb-4">
+                          <p className="text-gray-600 text-fluid-sm leading-relaxed mb-4">
                             {exp.description}
                           </p>
                         )}
@@ -242,7 +263,7 @@ export default function Experience() {
                         {exp.responsibilities && exp.responsibilities.length > 0 && (
                           <button
                             onClick={() => toggleDescription(index)}
-                            className="text-blue-600 hover:text-blue-700 text-xs sm:text-sm font-medium flex items-center gap-1 transition-all duration-300 hover:gap-2"
+                            className="text-blue-600 hover:text-blue-700 text-fluid-sm font-medium inline-flex items-center gap-1 py-2 -my-2 min-h-[40px] transition-all duration-300 hover:gap-2"
                           >
                             {expandedDescriptions[index] ? 'Show Less' : 'Read More'}
                             <svg className={`w-4 h-4 transition-transform duration-300 ${expandedDescriptions[index] ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -257,7 +278,7 @@ export default function Experience() {
                             href={exp.certificateUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="mt-3 inline-flex items-center gap-2 px-4 py-2 text-xs sm:text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-purple-600 rounded-sm hover:from-blue-700 hover:to-purple-700 transition-all duration-300 hover:scale-105 shadow-md"
+                            className="mt-3 inline-flex items-center gap-2 px-4 py-2 text-xs sm:text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-purple-600 rounded-full hover:from-blue-700 hover:to-purple-700 transition-all duration-300 hover:scale-105 shadow-md"
                           >
                             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />

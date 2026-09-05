@@ -19,6 +19,13 @@ export default function Contact() {
   const [hoveredSocial, setHoveredSocial] = useState(null);
 
   useEffect(() => {
+    // Guard: if IntersectionObserver is unavailable, reveal the content
+    // immediately rather than leaving it stuck at opacity-0 forever.
+    if (typeof IntersectionObserver === 'undefined') {
+      setIsVisible(true);
+      return;
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -30,6 +37,7 @@ export default function Contact() {
 
     const contactSection = document.getElementById('contact');
     if (contactSection) observer.observe(contactSection);
+    else setIsVisible(true);
 
     return () => observer.disconnect();
   }, []);
@@ -206,7 +214,7 @@ export default function Contact() {
   ];
 
   return (
-    <section id="contact" className="min-h-screen bg-white py-20 relative overflow-hidden">
+    <section id="contact" className="bg-white section-pad relative overflow-hidden">
       {/* Subtle background pattern */}
       <div className="absolute inset-0 opacity-[0.015]">
         <div className="w-full h-full" style={{
@@ -222,11 +230,11 @@ export default function Contact() {
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
         >
-          <h2 className="text-5xl sm:text-6xl lg:text-7xl font-light text-gray-900 tracking-tight mb-4">
+          <h2 className="section-title mb-4">
             Contact
           </h2>
-          <div className="w-16 h-0.5 bg-black mx-auto mb-6" />
-          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+          <div className="section-rule" />
+          <p className="section-lede">
             Ready to collaborate? Let's connect and discuss your next project
           </p>
         </div>
@@ -238,7 +246,7 @@ export default function Contact() {
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}
           >
-            <div className="bg-white border border-gray-100 rounded-sm p-8 transition-all duration-500 hover:shadow-xl hover:border-gray-200 hover:-translate-y-1">
+            <div className="bg-white border border-gray-200/70 rounded-2xl p-6 sm:p-8 shadow-card transition-all duration-500 ease-out-expo hover:shadow-card-hover hover:border-gray-300/70 hover:-translate-y-1">
               <h3 className="text-2xl font-medium text-gray-900 mb-8">Get in Touch</h3>
               
               <div className="space-y-6">
@@ -322,7 +330,7 @@ export default function Contact() {
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}
           >
-            <div className="bg-white border border-gray-100 rounded-sm p-8 transition-all duration-500 hover:shadow-xl hover:border-gray-200 hover:-translate-y-1">
+            <div className="bg-white border border-gray-200/70 rounded-2xl p-6 sm:p-8 shadow-card transition-all duration-500 ease-out-expo hover:shadow-card-hover hover:border-gray-300/70 hover:-translate-y-1">
               <h3 className="text-2xl font-medium text-gray-900 mb-8">Send a Message</h3>
               
               <form onSubmit={handleSubmit} className="space-y-6">

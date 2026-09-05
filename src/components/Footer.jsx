@@ -92,7 +92,7 @@ export default function Footer() {
                 <li key={link.name}>
                   <a 
                     href={link.href} 
-                    className="text-gray-600 hover:text-gray-900 transition-colors duration-300 text-sm"
+                    className="text-gray-600 hover:text-gray-900 transition-colors duration-300 text-fluid-sm inline-block py-1.5"
                   >
                     {link.name}
                   </a>

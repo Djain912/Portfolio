@@ -2,9 +2,100 @@
 @tailwind components;
 @tailwind utilities;
 
-:root{
-    background-color:  rgb(3 7 18);
-    font-family:monospace;
+@layer base {
+  :root {
+    /* Fixed navbar height — used for scroll offset so anchored sections
+       don't land underneath the nav. */
+    --nav-h: 4.5rem;
+    background-color: #ffffff;
+    color-scheme: light;
+  }
+
+  * {
+    /* Keep long words/URLs from forcing horizontal scroll on narrow screens */
+    min-width: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: var(--nav-h);
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply font-sans text-fluid-base text-gray-600 bg-white antialiased;
+    /* Nothing in this layout is meant to scroll sideways; decorative
+       absolutely-positioned elements would otherwise cause it on mobile. */
+    overflow-x: hidden;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display text-gray-900;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* Visible, on-brand keyboard focus. Mouse clicks stay clean. */
+  :focus-visible {
+    outline: 2px solid #2563eb;
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  ::selection {
+    background-color: #111827;
+    color: #ffffff;
+  }
+
+  img, svg, video {
+    @apply max-w-full;
+    height: auto;
+  }
+}
+
+@layer components {
+  /* Shared section shell: consistent fluid vertical rhythm everywhere. */
+  .section-pad {
+    @apply py-16 sm:py-20 lg:py-28;
+  }
+
+  /* Shared section title treatment, so every heading matches. */
+  .section-title {
+    @apply font-display text-fluid-section font-light text-gray-900;
+  }
+
+  .section-rule {
+    @apply w-14 h-0.5 bg-black mx-auto mb-6;
+  }
+
+  .section-lede {
+    @apply text-fluid-lg text-gray-600 max-w-2xl mx-auto;
+  }
+
+  /* Small technical label — the monospace accent that keeps the
+     developer character without monospacing whole paragraphs. */
+  .label-mono {
+    @apply font-mono text-fluid-xs uppercase tracking-[0.18em] text-gray-500;
+  }
+
+  .card-surface {
+    @apply bg-white border border-gray-200/80 rounded-xl shadow-card transition-all duration-500 ease-out-expo;
+  }
+
+  .card-surface:hover {
+    @apply shadow-card-hover border-gray-300/80 -translate-y-1;
+  }
+}
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+  .text-pretty  { text-wrap: pretty; }
 }
 
 /* Screen reader only class for SEO content - hidden visually but accessible to search engines and screen readers */
@@ -18,4 +109,18 @@
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border-width: 0;
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

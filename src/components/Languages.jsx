@@ -15,6 +15,15 @@ const mongodbLogo = 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/
 const sqlLogo = 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg';
 const reactNativeLogo = 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg';
 const flutterLogo = 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg';
+const typescriptLogo = 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg';
+const nextjsLogo = 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg';
+const postgresqlLogo = 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg';
+const prismaLogo = 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/prisma/prisma-original.svg';
+const firebaseLogo = 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg';
+const goLogo = 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original-logo.svg';
+const dockerLogo = 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg';
+const awsLogo = 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg';
+const gitLogo = 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg';
 
 // Define skill categories with logos
 const skills = [
@@ -36,6 +45,16 @@ const skills = [
   { 
     name: 'React', 
     logo: reactLogo,
+    category: 'Frontend'
+  },
+  { 
+    name: 'TypeScript', 
+    logo: typescriptLogo,
+    category: 'Frontend'
+  },
+  { 
+    name: 'Next.js', 
+    logo: nextjsLogo,
     category: 'Frontend'
   },
   { 
@@ -69,6 +88,21 @@ const skills = [
     category: 'Database'
   },
   { 
+    name: 'PostgreSQL', 
+    logo: postgresqlLogo,
+    category: 'Database'
+  },
+  { 
+    name: 'Prisma', 
+    logo: prismaLogo,
+    category: 'Database'
+  },
+  { 
+    name: 'Firebase', 
+    logo: firebaseLogo,
+    category: 'Database'
+  },
+  { 
     name: 'Python', 
     logo: pythonLogo,
     category: 'Programming'
@@ -88,6 +122,26 @@ const skills = [
     logo: cppLogo,
     category: 'Programming'
   },
+  { 
+    name: 'Go', 
+    logo: goLogo,
+    category: 'Programming'
+  },
+  { 
+    name: 'Git', 
+    logo: gitLogo,
+    category: 'Tools & Cloud'
+  },
+  { 
+    name: 'Docker', 
+    logo: dockerLogo,
+    category: 'Tools & Cloud'
+  },
+  { 
+    name: 'AWS', 
+    logo: awsLogo,
+    category: 'Tools & Cloud'
+  },
 ];
 
 const categories = ['All', ...new Set(skills.map(skill => skill.category))];
@@ -99,6 +153,13 @@ export default function Skills() {
   const [isFiltering, setIsFiltering] = useState(false);
 
   useEffect(() => {
+    // Guard: if IntersectionObserver is unavailable, reveal the content
+    // immediately rather than leaving it stuck at opacity-0 forever.
+    if (typeof IntersectionObserver === 'undefined') {
+      setIsVisible(true);
+      return;
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -110,6 +171,7 @@ export default function Skills() {
 
     const skillsSection = document.getElementById('skills');
     if (skillsSection) observer.observe(skillsSection);
+    else setIsVisible(true);
 
     return () => observer.disconnect();
   }, []);
@@ -125,7 +187,7 @@ export default function Skills() {
   };
 
   return (
-    <div id="skills" className="min-h-screen bg-gray-50 py-20 relative overflow-hidden">
+    <div id="skills" className="bg-gray-50 section-pad relative overflow-hidden">
       {/* Subtle background pattern */}
       <div className="absolute inset-0 opacity-[0.02]">
         <div className="w-full h-full" style={{
@@ -141,14 +203,14 @@ export default function Skills() {
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
         >
-          <h2 className="text-5xl sm:text-6xl lg:text-7xl font-light text-gray-900 tracking-tight mb-4">
+          <h2 className="section-title mb-4">
             Skills
           </h2>
-          <div className="w-16 h-0.5 bg-black mx-auto mb-6" />
-          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+          <div className="section-rule" />
+          <p className="section-lede">
             Technologies I've learned  throughout my development journey.
           </p>
-          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+          <p className="section-lede">
             These are the tools I’ve mastered... and now occasionally supervise while AI does the real work 😁.
           </p>
         </div>

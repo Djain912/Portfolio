@@ -11,6 +11,7 @@ export default function Navbarr() {
     { name: "Experience", id: "experience" },
     { name: "Skills", id: "skills" },
     { name: "Projects", id: "projects" },
+    { name: "Open Source", id: "open-source" },
     { name: "Contact", id: "contact" },
   ];
 

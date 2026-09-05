@@ -7,6 +7,13 @@ export default function About() {
   const [imageHovered, setImageHovered] = useState(false);
   
   useEffect(() => {
+    // Guard: if IntersectionObserver is unavailable, reveal the content
+    // immediately rather than leaving it stuck at opacity-0 forever.
+    if (typeof IntersectionObserver === 'undefined') {
+      setIsVisible(true);
+      return;
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -18,6 +25,7 @@ export default function About() {
 
     const aboutSection = document.getElementById('about-me');
     if (aboutSection) observer.observe(aboutSection);
+    else setIsVisible(true);
 
     return () => observer.disconnect();
   }, []);
@@ -37,7 +45,7 @@ export default function About() {
   ];
   
   return (
-    <div id="about-me" className="min-h-screen bg-white py-20 relative overflow-hidden">
+    <div id="about-me" className="bg-white section-pad relative overflow-hidden">
       {/* Enhanced background pattern */}
       <div className="absolute inset-0 opacity-[0.02]">
         <div className="w-full h-full" style={{
@@ -67,7 +75,7 @@ export default function About() {
           >
             {/* Title */}
             <div className="space-y-4">
-              <h2 className="text-5xl sm:text-6xl lg:text-7xl font-light text-gray-900 tracking-tight">
+              <h2 className="section-title">
                 About
               </h2>
               <div className="w-16 h-0.5 bg-black transform origin-left transition-all duration-700 delay-300" 
@@ -84,15 +92,23 @@ export default function About() {
                 Hi, I'm <span className="text-gray-900 font-medium relative group">
                   Darshan Jain
                   <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
-                </span>, a passionate Full Stack Web Developer with experience as an intern at Elight Labs. I enjoy building dynamic, responsive web applications from the ground up.
+                </span>, a Full Stack Developer with hands-on internship experience building and deploying real-world systems and APIs for production clients. I recently completed a 6-month internship at <span className="text-gray-900 font-medium">ZootechX</span>, where I architected and shipped a production ERP now running a Coca-Cola distributor's daily operations.
               </p>
-              
-              <p className="transform transition-all duration-700 delay-700" 
-                 style={{ 
-                   opacity: isVisible ? 1 : 0, 
+
+              <p className="transform transition-all duration-700 delay-600"
+                 style={{
+                   opacity: isVisible ? 1 : 0,
                    transform: isVisible ? 'translateY(0px)' : 'translateY(20px)'
                  }}>
-                With a keen eye for detail and a commitment to excellence, I love turning ideas into reality, tackling new challenges, and continuously learning to enhance my skills.
+                I'm a <span className="text-gray-900 font-medium">2x hackathon winner</span> pursuing a B.E. in Information Technology at Vidyalankar Institute of Technology with a <span className="text-gray-900 font-medium">CGPA of 9.82/10</span>, having held the top rank for three consecutive semesters. I also contribute to open source — I'm a private organization member at <span className="text-gray-900 font-medium">PinchTab</span>, a Go-based browser automation tool for AI agents.
+              </p>
+
+              <p className="transform transition-all duration-700 delay-700"
+                 style={{
+                   opacity: isVisible ? 1 : 0,
+                   transform: isVisible ? 'translateY(0px)' : 'translateY(20px)'
+                 }}>
+                My work spans scalable REST APIs, relational data modelling with PostgreSQL and Prisma, and AI/RAG pipelines using embeddings and vector databases. With a keen eye for detail and a commitment to excellence, I love turning ideas into reality, tackling new challenges, and continuously learning to enhance my skills.
               </p>
             </div>
 
@@ -317,22 +333,37 @@ export default function About() {
         </p>
         <h3>Professional Journey</h3>
         <p>
-          Darshan's journey in software development began during his academic years at Thadomal Shahani Engineering College, 
-          where he pursued Computer Engineering. His passion for coding and problem-solving led him to intern at Elight Labs 
-          as a Full Stack Developer in June-July 2023, where he gained valuable hands-on experience in remote work and 
-          professional software development practices.
+          Darshan's journey in software development began during his academic years at Vidyalankar Polytechnic, where he
+          completed a Diploma in Information Technology with a 92.31% aggregate. He is currently pursuing a Bachelor of
+          Engineering in Information Technology at Vidyalankar Institute of Technology (2024-2027), maintaining a CGPA of
+          9.82/10 and holding the top rank for three consecutive semesters. His passion for coding and problem-solving led
+          him to intern at Elight Labs as a Full Stack Developer in June-July 2023, where he gained valuable hands-on
+          experience in remote work and professional software development practices.
         </p>
         <p>
-          Currently, Darshan serves as a Full Stack Developer Intern at ZootechX (September 2025 - Present), working in 
-          a hybrid environment where he contributes to building innovative solutions using cutting-edge technologies. 
-          His role involves developing scalable web applications, implementing responsive designs, and integrating 
-          various APIs and services.
+          Darshan completed a 6-month Full Stack Developer Internship at ZootechX (September 2025 - March 2026) in a hybrid
+          environment. There he architected and deployed a production ERP for a Coca-Cola distributor, integrating Admin
+          (Web), Counter Sales (Web), and Driver (Mobile) applications on a unified Node.js, Express.js, and MongoDB
+          backend. He designed scalable REST APIs, optimized MongoDB operations using aggregation pipelines and bulk
+          writes, and automated PDF invoice parsing with Python, reducing reporting turnaround by 50%. He independently
+          managed client onboarding, solution architecture, deployment, and production support, delivering a
+          business-critical system now used for daily distribution operations.
+        </p>
+        <h3>Open Source Contributions</h3>
+        <p>
+          Darshan is an open source contributor to PinchTab, a Go-based browser automation tool that gives AI agents and
+          LLM-driven programs programmatic control over Chrome via an HTTP API, used for scraping, testing, and
+          agent-driven workflows. He has submitted multiple pull requests covering bug fixes and feature additions,
+          participated in code reviews, and collaborated with maintainers through Git-based workflows. He was selected as
+          a private organization member for consistent, quality contributions.
         </p>
         <h3>Technical Skills and Expertise</h3>
         <p>
           Darshan possesses a diverse skill set spanning multiple programming languages and frameworks. His expertise 
           includes React.js for building dynamic user interfaces, Node.js and Express.js for backend development, 
-          MongoDB and MySQL for database management, and Flutter and React Native for mobile application development.
+          MongoDB, MySQL and PostgreSQL for database management, Prisma for type-safe data modelling and migrations, and
+          Flutter and React Native for mobile application development. He has also built production AI/RAG pipelines using
+          OpenAI embeddings and the pgvector extension on serverless PostgreSQL.
         </p>
         <p>
           He is proficient in modern JavaScript (ES6+), TypeScript for type-safe code, Python for scripting and data 
@@ -350,10 +381,12 @@ export default function About() {
         <h3>Achievements and Recognition</h3>
         <p>
           Darshan's technical prowess has been recognized through multiple achievements, including winning the 
-          Codeissance Hackathon in the Industry Domain with the LeadVault project, becoming a finalist in Smart India 
-          Hackathon 2025 with CivicConnect, and showcasing the innovative Attendify project at the Tantravihar state-level 
-          tech fest. These accomplishments demonstrate his ability to deliver high-quality solutions under pressure and 
-          collaborate effectively with team members.
+          Codeissance Hackathon in the Industry Domain with the LeadVault project among 400+ teams, winning First Prize at
+          Spectrum 2026 with the Smart Alumni Connect platform, becoming a finalist in Smart India Hackathon 2025 with
+          CivicConnect, and showcasing the innovative Attendify project at the Tantravihar state-level tech fest. He has
+          also completed advanced training in Synthetic Aperture Radar (PolSAR and InSAR) at IIT Bombay and has secured the
+          top academic rank for three consecutive semesters. These accomplishments demonstrate his ability to deliver
+          high-quality solutions under pressure and collaborate effectively with team members.
         </p>
         <h3>Work Philosophy</h3>
         <p>

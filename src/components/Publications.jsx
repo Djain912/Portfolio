@@ -18,6 +18,13 @@ export default function Publications() {
   const [hoveredPublication, setHoveredPublication] = useState(null);
 
   useEffect(() => {
+    // Guard: if IntersectionObserver is unavailable, reveal the content
+    // immediately rather than leaving it stuck at opacity-0 forever.
+    if (typeof IntersectionObserver === 'undefined') {
+      setIsVisible(true);
+      return;
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -29,12 +36,13 @@ export default function Publications() {
 
     const publicationsSection = document.getElementById('publications');
     if (publicationsSection) observer.observe(publicationsSection);
+    else setIsVisible(true);
 
     return () => observer.disconnect();
   }, []);
 
   return (
-    <section id="publications" className="min-h-screen bg-gray-50 py-20 relative overflow-hidden">
+    <section id="publications" className="bg-gray-50 section-pad relative overflow-hidden">
       {/* Subtle background pattern */}
       <div className="absolute inset-0 opacity-[0.02]">
         <div className="w-full h-full" style={{
@@ -50,11 +58,11 @@ export default function Publications() {
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
         >
-          <h2 className="text-5xl sm:text-6xl lg:text-7xl font-light text-gray-900 tracking-tight mb-4">
+          <h2 className="section-title mb-4">
             Publications
           </h2>
-          <div className="w-16 h-0.5 bg-black mx-auto mb-6" />
-          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+          <div className="section-rule" />
+          <p className="section-lede">
             Research contributions and academic publications
           </p>
         </div>
@@ -75,7 +83,7 @@ export default function Publications() {
                 onMouseLeave={() => setHoveredPublication(null)}
                 onClick={() => window.open(publication.link, '_blank')}
               >
-                <div className="bg-white border border-gray-100 rounded-sm overflow-hidden transition-all duration-500 hover:shadow-xl hover:border-gray-200 hover:-translate-y-2">
+                <div className="bg-white border border-gray-200/70 rounded-2xl overflow-hidden shadow-card transition-all duration-500 ease-out-expo hover:shadow-card-hover hover:border-gray-300/70 hover:-translate-y-1.5">
                   {/* Publication Image */}
                   <div className="relative h-64 overflow-hidden bg-gray-100">
                     <img

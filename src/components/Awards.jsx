@@ -3,6 +3,22 @@ import React, { useState, useEffect } from "react";
 // Awards data
 const awards = [
   {
+    title: "🏆 1st Prize - Spectrum 2026",
+    issuer: "Spectrum 2026",
+    date: "2026",
+    description: "Secured First Prize at Spectrum 2026 for Smart Alumni Connect, a platform that turns dormant institutional alumni networks into an active, usable resource. The project delivered a verified alumni directory with self-maintained profiles, structured mentorship matching between students and alumni based on career domain and availability, a referral and opportunity board surfacing roles that never reach public job boards, and event coordination with RSVP tracking. An institution-facing analytics dashboard surfaced placement outcomes by batch and branch, geographic distribution, and cohort engagement trends. Judges recognised the project for addressing a genuine, universal institutional problem with a complete, deployable solution rather than a prototype.",
+    projectName: "Smart Alumni Connect",
+    projectLink: "https://github.com/Djain912",
+    badges: ["🏆 1st Prize", "🎓 Alumni Platform"]
+  },
+  {
+    title: "🛰️ Advanced Training in SAR — PolSAR & InSAR",
+    issuer: "Indian Institute of Technology (IIT) Bombay",
+    date: "2025",
+    description: "Completed advanced training in Synthetic Aperture Radar (SAR) at IIT Bombay, covering Polarimetric SAR (PolSAR) and Interferometric SAR (InSAR) techniques. The programme covered radar polarimetry fundamentals, scattering mechanism decomposition, interferometric phase analysis for terrain and deformation measurement, and the processing pipelines used to turn raw radar acquisitions into usable geospatial products. Training at one of India's premier engineering institutions provided rigorous exposure to remote sensing and signal processing — a domain well outside conventional web development, broadening technical range into scientific computing and geospatial data analysis.",
+    badges: ["🛰️ IIT Bombay", "📡 Remote Sensing"]
+  },
+  {
     title: "🏆 Hackathon Winner - Industry Domain",
     issuer: "Codeissance, Thadomal Shahani Engineering College",
     date: "2025",
@@ -39,6 +55,13 @@ const awards = [
     projectName: "Attendify",
     projectLink: "https://www.linkedin.com/posts/darshanjain912_attendify-tantravihar-techfest-activity-7319597990594146306-4Ms8",
     badges: ["🌟 Featured", "🔐 Anti-Proxy System"]
+  },
+  {
+    title: "📈 Top Rank - Three Consecutive Semesters",
+    issuer: "Vidyalankar Institute of Technology",
+    date: "2024 - 2026",
+    description: "Consistently secured the top rank for three consecutive semesters in the Bachelor of Engineering in Information Technology programme, maintaining a CGPA of 9.82/10. Sustaining first position across three successive semesters — while simultaneously shipping a production ERP during a six-month industry internship, contributing to open source, and competing in national-level hackathons — reflects consistent academic discipline alongside heavy practical engineering workload rather than performance in a single strong term.",
+    badges: ["📚 CGPA 9.82", "🥇 Rank 1"]
   }
 ];
 
@@ -48,6 +71,13 @@ export default function Awards() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
+    // Guard: if IntersectionObserver is unavailable, reveal the content
+    // immediately rather than leaving it stuck at opacity-0 forever.
+    if (typeof IntersectionObserver === 'undefined') {
+      setIsVisible(true);
+      return;
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -59,6 +89,7 @@ export default function Awards() {
 
     const awardsSection = document.getElementById('awards');
     if (awardsSection) observer.observe(awardsSection);
+    else setIsVisible(true);
 
     return () => observer.disconnect();
   }, []);
@@ -75,7 +106,7 @@ export default function Awards() {
   };
 
   return (
-    <section id="awards" className="min-h-screen bg-white py-20 relative overflow-hidden">
+    <section id="awards" className="bg-white section-pad relative overflow-hidden">
       {/* Subtle background pattern */}
       <div className="absolute inset-0 opacity-[0.015]">
         <div className="w-full h-full" style={{
@@ -91,11 +122,11 @@ export default function Awards() {
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
         >
-          <h2 className="text-5xl sm:text-6xl lg:text-7xl font-light text-gray-900 tracking-tight mb-4">
+          <h2 className="section-title mb-4">
             Honors & Awards
           </h2>
-          <div className="w-16 h-0.5 bg-black mx-auto mb-6" />
-          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+          <div className="section-rule" />
+          <p className="section-lede">
             Recognition for academic excellence and innovative contributions
           </p>
         </div>
@@ -114,7 +145,7 @@ export default function Awards() {
               onMouseEnter={() => setHoveredAward(index)}
               onMouseLeave={() => setHoveredAward(null)}
             >
-              <div className="h-full bg-white border border-gray-100 rounded-sm overflow-hidden transition-all duration-500 hover:shadow-xl hover:border-gray-200 hover:-translate-y-1">
+              <div className="h-full bg-white border border-gray-200/70 rounded-2xl overflow-hidden shadow-card transition-all duration-500 ease-out-expo hover:shadow-card-hover hover:border-gray-300/70 hover:-translate-y-1">
                 {/* Award Header */}
                 <div className="p-8 pb-6">
                   <div className="flex items-start justify-between mb-4">
@@ -150,7 +181,7 @@ export default function Awards() {
                   
                   {/* Description */}
                   <div className="mb-6">
-                    <p className="text-gray-600 text-sm leading-relaxed">
+                    <p className="text-gray-600 text-fluid-sm leading-relaxed">
                       {expandedDescriptions[index] 
                         ? award.description 
                         : `${award.description.substring(0, 200)}...`}
@@ -164,7 +195,7 @@ export default function Awards() {
                           href={award.projectLink}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-sm font-semibold text-blue-600 hover:text-blue-700 flex items-center gap-2 transition-colors"
+                          className="text-fluid-sm font-semibold text-blue-600 inline-block py-1 hover:text-blue-700 flex items-center gap-2 transition-colors"
                         >
                           {award.projectName}
                           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

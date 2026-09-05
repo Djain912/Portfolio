@@ -11,6 +11,7 @@ import Contact from './components/Contact';
 import Publications from './components/Publications';
 import Awards from './components/Awards';
 import Experience from './components/Experience';
+import OpenSource from './components/OpenSource';
 import ScrollProgress from './components/ScrollProgress';
 import CursorTrail from './components/CursorTrail';
 
@@ -24,30 +25,20 @@ function App() {
         <Route path="/home" element={
           <>
             <Navbarr />
+            {/* Each component below renders its own <section id="...">, so
+                they are mounted directly — wrapping them here would produce
+                duplicate IDs and break anchor links and scrollspy. */}
             <section id="home">
               <Home />
             </section>
-            <section id="about-me">
-              <About />
-            </section>
-            <section id="experience">
-              <Experience />
-            </section>
-            <section id="skills">
-              <Languages />
-            </section>
-            <section id="projects">
-              <Projects />
-            </section>
-            <section id="publications">
-              <Publications />
-            </section>
-            <section id="awards">
-              <Awards />
-            </section>
-            <section id="contact">
-              <Contact />
-            </section>
+            <About />
+            <Experience />
+            <Languages />
+            <Projects />
+            <OpenSource />
+            <Publications />
+            <Awards />
+            <Contact />
             <Footer />
           </>
         } />

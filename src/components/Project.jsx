@@ -3,6 +3,92 @@ import React, { useState, useEffect } from "react";
 // Sample projects data
 const projects = [
   {
+    title: "Chartix ⚡",
+    subtitle: "AI-Powered CMT Exam Prep Platform — Live SaaS",
+    link: "https://github.com/Djain912",
+    githubLink: "https://github.com/Djain912",
+    description: "Production SaaS for CMT (Chartered Market Technician) exam preparation, built on a 30-model PostgreSQL schema with a RAG pipeline that turns unstructured curriculum notes into embedded, queryable knowledge using OpenAI embeddings and pgvector.",
+    fullDescription: `Chartix is a live, production SaaS platform built to help candidates prepare for the CMT (Chartered Market Technician) certification. It combines a rigorously modelled curriculum backend with an AI retrieval layer, delivering structured study paths, adaptive quizzes, and instant answers grounded in the official curriculum.
+
+🗄️ DATA ARCHITECTURE:
+The platform is built on a 30-model relational schema in PostgreSQL, managed through Prisma. The schema spans curriculum content, question banks, quiz attempts, payments, subscriptions, and entitlements. Rather than destructively updating records, the design uses soft-delete versioning and immutable snapshots — so a learner's past attempt always renders against the exact curriculum version they studied, preserving historical data integrity even as content evolves.
+
+🧠 AI / RAG PIPELINE:
+A custom data pipeline ingests unstructured curriculum notes, normalises and chunks them, generates OpenAI embeddings, and loads the vectors into a PostgreSQL vector store using the pgvector extension. Queries are answered by retrieving the most semantically relevant chunks and grounding the LLM response in them, which keeps answers tied to the real syllabus instead of model hallucination. Building this end-to-end gave hands-on exposure to embedding pipelines, chunking strategy, and vector database tuning for LLM/RAG applications.
+
+⚙️ RELIABILITY ENGINEERING:
+Running an embedding pipeline against third-party APIs in production surfaces real failure modes. The pipeline handles rate limiting with backoff, idempotent writes so a retried batch never duplicates chunks, and structured error handling with partial-failure recovery — so one bad document never poisons an entire ingestion run. The whole system runs on serverless PostgreSQL (Neon), which required careful attention to connection pooling and cold-start behaviour.
+
+🔍 QUERY & SCHEMA WORK:
+Wrote and optimised SQL and Prisma queries across the full schema — entitlement checks on every content read, aggregate progress reporting, and payment reconciliation — tuning indexes and query shape to keep response times low as the dataset grew. Schema evolution is handled entirely through Prisma migrations, giving incremental, reviewable, trackable changes across the project's lifetime, with Git as the version control backbone.
+
+💳 PRODUCT SURFACE:
+Beyond the engine, Chartix ships a complete commercial product: tiered subscriptions with entitlement gating, payment integration, per-chapter progress tracking, timed mock exams that mirror the real CMT format, performance analytics highlighting weak topics, and an AI tutor that answers curriculum questions with citations back to source material.`,
+    img: "https://images.pexels.com/photos/6801648/pexels-photo-6801648.jpeg?auto=compress&cs=tinysrgb&w=600",
+    tags: ["PostgreSQL", "Prisma", "pgvector", "OpenAI", "RAG", "Next.js"],
+    features: ["30-Model Schema", "RAG + Vector Search", "OpenAI Embeddings", "Soft-Delete Versioning", "Payments & Entitlements", "Serverless Postgres"],
+    badges: ["🚀 Live SaaS", "🧠 AI/RAG"],
+    techStack: "Next.js, PostgreSQL (Neon), Prisma, pgvector, OpenAI Embeddings, TypeScript, Git"
+  },
+  {
+    title: "Coca-Cola Distributor ERP 🏭",
+    subtitle: "Production ERP System — Built at ZootechX",
+    link: "https://www.zootechx.com/",
+    description: "Business-critical ERP deployed for a Coca-Cola distributor, unifying Admin (Web), Counter Sales (Web), and Driver (Mobile) applications on a single Node.js, Express.js and MongoDB backend. Currently running daily distribution operations.",
+    fullDescription: `A production Enterprise Resource Planning system architected and deployed for a Coca-Cola distributor during a 6-month internship at ZootechX. Unlike a coursework project, this system is in live commercial use, running the distributor's daily operations end to end.
+
+🏗️ UNIFIED THREE-APP ARCHITECTURE:
+The platform is not one application but three, sharing a single unified backend built on Node.js, Express.js, and MongoDB:
+
+• Admin (Web) — the control tower. Inventory and stock management, route and territory planning, pricing and scheme configuration, payroll, and a reporting suite covering sales, dispatch, and settlement.
+• Counter Sales (Web) — the front-desk terminal. Fast order entry, live stock lookup, invoice generation, and customer credit tracking designed for high-volume counter throughput.
+• Driver (Mobile) — the field app. Route manifests, delivery confirmation, on-the-spot collection recording, and end-of-day settlement reconciliation against dispatched stock.
+
+Keeping all three on one backend meant a single source of truth: stock decremented at the counter is immediately visible to the admin and reflected on the driver's manifest, eliminating the reconciliation drift that plagued the previous manual process.
+
+⚡ BACKEND & PERFORMANCE:
+Designed scalable REST APIs covering the full distribution lifecycle. MongoDB operations were optimised using aggregation pipelines for reporting workloads — collapsing what would have been many round trips into single database-side computations — and bulk writes for batch operations like dispatch creation and stock adjustment, which dramatically reduced write latency on large daily loads.
+
+🐍 AUTOMATED INVOICE PARSING:
+Supplier invoices arrived as unstructured PDFs requiring manual data entry. Built a Python pipeline that parses these PDFs, extracts structured line-item data, and feeds it directly into the ERP. This cut reporting turnaround time by 50% and removed a persistent source of transcription errors.
+
+📈 IMPACT & OWNERSHIP:
+Digital transformation of sales, dispatch, settlement, and payroll reduced manual processes by roughly 40%. Beyond the code, this project meant independently managing the full engagement: client onboarding, requirements gathering, solution architecture, deployment, and ongoing production support — owning a business-critical system where downtime directly affects a real distribution business.`,
+    img: "https://images.pexels.com/photos/4483610/pexels-photo-4483610.jpeg?auto=compress&cs=tinysrgb&w=600",
+    tags: ["Node.js", "Express.js", "MongoDB", "React", "React Native", "Python"],
+    features: ["3 Unified Applications", "Aggregation Pipelines", "PDF Invoice Automation", "Payroll & Settlement", "Route Management", "Live in Production"],
+    badges: ["🏭 Production", "💼 Client Work"],
+    techStack: "Node.js, Express.js, MongoDB, React, React Native, Python, REST API"
+  },
+  {
+    title: "Smart Alumni Connect 🏆",
+    subtitle: "Alumni Networking Platform — 1st Prize, Spectrum 2026",
+    link: "https://github.com/Djain912",
+    githubLink: "https://github.com/Djain912",
+    description: "🏆 First-prize winning platform at Spectrum 2026 that reconnects institutions with their alumni network — enabling mentorship matching, career opportunities, event coordination, and verified alumni directories.",
+    fullDescription: `Smart Alumni Connect won 1st Prize at Spectrum 2026. The platform tackles a problem almost every institution has: alumni networks that exist on paper but are impossible to actually use. Contact details go stale, mentorship happens only through personal connections, and institutions lose track of graduates within a few years.
+
+🎓 VERIFIED ALUMNI DIRECTORY:
+The core of the platform is a searchable, verified directory. Alumni claim their profile through institution-issued verification, then keep it current themselves — company, role, location, domain expertise, and willingness to mentor. Search and filtering let a student find, for example, alumni working in data engineering in Bangalore who are open to mentoring.
+
+🤝 MENTORSHIP MATCHING:
+Rather than leaving connections to chance, the platform matches students with alumni based on career interest, target domain, and availability. Structured mentorship requests, scheduling, and session tracking turn an informal favour into a manageable programme the institution can actually run and measure.
+
+💼 OPPORTUNITY BOARD:
+Alumni post referrals, internships, and job openings directly to their institution's network, giving students access to roles that never reach public job boards. Postings are tagged by domain and experience level, and students receive notifications matched to their profile.
+
+📅 EVENTS & ENGAGEMENT:
+Reunion planning, guest lecture coordination, and virtual meetups run through a shared calendar with RSVP tracking. Engagement analytics show the institution which cohorts are active and which are drifting away, so outreach can be targeted rather than blanket.
+
+📊 INSTITUTION DASHBOARD:
+Administrators get a complete view: graduate placement outcomes by batch and branch, higher-education destinations, geographic distribution, active mentor counts, and engagement trends over time — data that feeds directly into accreditation reporting and placement strategy.`,
+    img: "https://images.pexels.com/photos/1181396/pexels-photo-1181396.jpeg?auto=compress&cs=tinysrgb&w=600",
+    tags: ["React", "Node.js", "Express", "MongoDB", "REST API"],
+    features: ["Verified Alumni Directory", "Mentorship Matching", "Referral & Job Board", "Event Coordination", "Engagement Analytics", "Admin Dashboard"],
+    badges: ["🏆 1st Prize", "🎓 Spectrum 2026"],
+    techStack: "React, Node.js, Express, MongoDB, REST API, JWT"
+  },
+  {
     title: "LeadVault 🏆",
     subtitle: "Secure Lead Management System - Hackathon Winner",
     link: "https://github.com/AnishBandal/codeissance-2025",
@@ -19,8 +105,7 @@ Key capabilities include: automated lead assignment, customizable workflows, ema
     tags: ["React", "Node.js", "MongoDB", "TypeScript", "2FA", "PWA"],
     features: ["Two-Factor Authentication", "Role-Based Access Control", "Offline PWA", "AI Lead Scoring", "Real-time Analytics", "Automated Workflows"],
     badges: ["🏆 Winner", "🔐 Enterprise"],
-    techStack: "React, Node.js, Express, MongoDB, TypeScript, Redis, JWT, Socket.io",
-    team: "Anish Bandal, Team Members"
+    techStack: "React, Node.js, Express, MongoDB, TypeScript, Redis, JWT, Socket.io"
   },
   {
     title: "CivicConnect",
@@ -41,8 +126,7 @@ Built with scalability in mind, CivicConnect can serve cities of any size and in
     tags: ["React Native", "Expo", "Redux", "AI/ML", "Maps"],
     features: ["AI Issue Detection", "GPS Tracking", "Real-time Status", "Admin Dashboard", "Community Voting", "Gamification"],
     badges: ["🎯 SIH 2025", "🤖 AI-Powered"],
-    techStack: "React Native, Expo, Redux, TensorFlow, Node.js, MongoDB, Google Maps API",
-    team: "Atharva Gitaye, Team Members"
+    techStack: "React Native, Expo, Redux, TensorFlow, Node.js, MongoDB, Google Maps API"
   },
   {
     title: "Python Typing Speed Test",
@@ -63,8 +147,7 @@ Built with clean, maintainable Python code, the application demonstrates best pr
     tags: ["Python", "Tkinter", "Wikipedia API", "GUI"],
     features: ["Dynamic Text", "Real-time WPM", "Light/Dark Mode", "High Score Tracking", "Error Analysis", "Progress Graphs"],
     badges: ["🐍 Python", "⚡ Interactive"],
-    techStack: "Python 3.x, Tkinter, Wikipedia API, JSON",
-    team: "Darshan Jain (Solo Project)"
+    techStack: "Python 3.x, Tkinter, Wikipedia API, JSON"
   },
   {
     title: "INNOVEST",
@@ -84,8 +167,7 @@ The platform also provides educational resources, legal templates, and fundraisi
     tags: ["React", "Node.js", "Express", "MongoDB", "AI/ML"],
     features: ["AI-powered chatbot", "Video conferencing", "Live streaming", "News aggregation", "Matchmaking Algorithm", "Secure Document Sharing"],
     badges: ["📄 Published"],
-    techStack: "React, Node.js, Express, MongoDB, WebRTC, Socket.io, Natural Language Processing",
-    team: "Research Team"
+    techStack: "React, Node.js, Express, MongoDB, WebRTC, Socket.io, Natural Language Processing"
   },
   {
     title: "CodeItUp",
@@ -105,8 +187,7 @@ Built with performance in mind, CodeItUp features lazy loading, image optimizati
     tags: ["React", "Node.js", "Express", "MongoDB"],
     features: ["Rich-text editor", "Newsletter integration", "Cross-platform accessibility", "Syntax Highlighting", "SEO Optimization", "Analytics Dashboard"],
     badges: ["🚀 Live"],
-    techStack: "React, Node.js, Express, MongoDB, Markdown, JWT, Nodemailer",
-    team: "Darshan Jain, Contributors"
+    techStack: "React, Node.js, Express, MongoDB, Markdown, JWT, Nodemailer"
   },
 //   {
 //     title: "Pothole Detection & Reward System",
@@ -129,7 +210,6 @@ Built with performance in mind, CodeItUp features lazy loading, image optimizati
 //     features: ["AI pothole detection", "Reward system", "Real-time tracking", "Official dashboard", "Gamification", "Heat Maps"],
 //     badges: ["🤖 AI/ML"],
 //     techStack: "React Native, TensorFlow Lite, Node.js, MongoDB, Google Maps API, Firebase",
-//     team: "Darshan Jain, Hackathon Team"
 //   },
   {
     title: "Attendify 🌟",
@@ -172,7 +252,6 @@ The system has been designed with scalability in mind, capable of handling thous
     features: ["Unique Device ID", "Facial Recognition", "One-Tap BLE Scanning", "Admin Dashboard", "Geofencing", "Real-time Analytics"],
     badges: ["🌟 Tantravihar", "🔐 Anti-Proxy"],
     techStack: "Flutter, Firebase, BLE, TensorFlow Lite, Node.js, MongoDB, ML Kit",
-    team: "Darshan Jain, Yash Jadhav, Chetna Padhi",
     mentors: "Shashikant Mahajan, Kanchan Dhuri, Rasika Ransing"
   }
 ];
@@ -184,6 +263,13 @@ export default function Projects() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
+    // Guard: if IntersectionObserver is unavailable, reveal the content
+    // immediately rather than leaving it stuck at opacity-0 forever.
+    if (typeof IntersectionObserver === 'undefined') {
+      setIsVisible(true);
+      return;
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -195,6 +281,7 @@ export default function Projects() {
 
     const projectsSection = document.getElementById('projects');
     if (projectsSection) observer.observe(projectsSection);
+    else setIsVisible(true);
 
     return () => observer.disconnect();
   }, []);
@@ -224,7 +311,7 @@ export default function Projects() {
   }, [isModalOpen]);
 
   return (
-    <section id="projects" className="min-h-screen bg-white py-20 relative overflow-hidden">
+    <section id="projects" className="bg-white section-pad relative overflow-hidden">
       {/* Subtle background pattern */}
       <div className="absolute inset-0 opacity-[0.015]">
         <div className="w-full h-full" style={{
@@ -240,11 +327,11 @@ export default function Projects() {
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
         >
-          <h2 className="text-5xl sm:text-6xl lg:text-7xl font-light text-gray-900 tracking-tight mb-4">
+          <h2 className="section-title mb-4">
             Projects
           </h2>
-          <div className="w-16 h-0.5 bg-black mx-auto mb-6" />
-          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+          <div className="section-rule" />
+          <p className="section-lede">
             A collection of projects showcasing my development skills
           </p>
         </div>
@@ -264,7 +351,7 @@ export default function Projects() {
               onMouseLeave={() => setHoveredProject(null)}
               onClick={() => window.open(project.link, '_blank')}
             >
-              <div className="h-full bg-white border border-gray-100 rounded-sm overflow-hidden transition-all duration-500 hover:shadow-xl hover:border-gray-200 hover:-translate-y-2 flex flex-col">
+              <div className="h-full bg-white border border-gray-200/70 rounded-2xl overflow-hidden shadow-card transition-all duration-500 ease-out-expo hover:shadow-card-hover hover:border-gray-300/70 hover:-translate-y-1.5 flex flex-col">
                 {/* Project Image */}
                 <div className="relative h-48 sm:h-56 overflow-hidden bg-gray-100">
                   <img
@@ -324,7 +411,7 @@ export default function Projects() {
                 {/* Project Info */}
                 <div className="p-4 sm:p-6 flex-1 flex flex-col">
                   <div className="mb-3">
-                    <h3 className="text-lg sm:text-xl font-medium text-gray-900 group-hover:text-gray-600 transition-colors duration-300">
+                    <h3 className="text-fluid-h3 font-display font-medium text-gray-900 group-hover:text-gray-600 transition-colors duration-300">
                       {project.title}
                     </h3>
                     {project.subtitle && (
@@ -332,7 +419,7 @@ export default function Projects() {
                     )}
                   </div>
                   
-                  <p className="text-gray-600 text-xs sm:text-sm leading-relaxed mb-4 line-clamp-3">
+                  <p className="text-gray-600 text-fluid-sm leading-relaxed mb-4 line-clamp-3">
                     {project.description}
                   </p>
 
@@ -340,7 +427,7 @@ export default function Projects() {
                   {project.fullDescription && (
                     <button
                       onClick={(e) => openModal(project, e)}
-                      className="text-blue-600 hover:text-blue-700 text-xs sm:text-sm font-medium mb-4 flex items-center gap-1 transition-all duration-300 hover:gap-2"
+                      className="text-blue-600 hover:text-blue-700 text-fluid-sm font-medium mb-3 inline-flex items-center gap-1 py-2 min-h-[40px] transition-all duration-300 hover:gap-2"
                     >
                       Read More
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -461,24 +548,12 @@ export default function Projects() {
                     </svg>
                     Technology Stack
                   </h4>
-                  <p className="text-gray-600 text-xs sm:text-sm">{selectedProject.techStack}</p>
+                  <p className="text-gray-600 text-fluid-sm">{selectedProject.techStack}</p>
                 </div>
               )}
 
-              {/* Team & Mentors */}
+              {/* Mentors */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
-                {selectedProject.team && (
-                  <div className="p-4 bg-blue-50 rounded-lg">
-                    <h4 className="text-sm font-semibold text-gray-900 mb-2 flex items-center gap-2">
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                      </svg>
-                      Team
-                    </h4>
-                    <p className="text-gray-600 text-xs sm:text-sm">{selectedProject.team}</p>
-                  </div>
-                )}
-                
                 {selectedProject.mentors && (
                   <div className="p-4 bg-purple-50 rounded-lg">
                     <h4 className="text-sm font-semibold text-gray-900 mb-2 flex items-center gap-2">
@@ -487,7 +562,7 @@ export default function Projects() {
                       </svg>
                       Mentors
                     </h4>
-                    <p className="text-gray-600 text-xs sm:text-sm">{selectedProject.mentors}</p>
+                    <p className="text-gray-600 text-fluid-sm">{selectedProject.mentors}</p>
                   </div>
                 )}
               </div>

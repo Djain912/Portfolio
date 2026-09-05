@@ -70,13 +70,13 @@ export default function Home() {
 
   // Load PDF URL when component mounts
   useEffect(() => {
-    import('../assets/DARSHAN_JAIN_RESUME.pdf')
+    import('../assets/DarshanJainResumeX.pdf')
       .then((module) => {
         setPdfUrl(module.default);
       })
       .catch((error) => {
         console.error('Error loading PDF:', error);
-        setPdfUrl('/DARSHAN_JAIN_RESUME.pdf.pdf'); // Fallback to public folder
+        setPdfUrl('/DarshanJainResumeX.pdf'); // Fallback to public folder
       });
   }, []);
 
@@ -244,83 +244,73 @@ export default function Home() {
           }`}
         >
           {/* Name with subtle animation */}
-          <div className="mb-8">
-            <h1 className="text-6xl sm:text-7xl md:text-8xl font-light tracking-tight text-gray-900 mb-4 relative">
+          <div className="mb-6 sm:mb-8">
+            {/* Stacks on narrow phones, sits on one line from 420px up */}
+            <h1 className="font-display text-fluid-hero font-light text-gray-900 mb-4 relative">
               <span className="inline-block hover:scale-105 transition-transform duration-500 cursor-default relative">
                 Darshan
                 {/* Grid-inspired underline */}
                 <div className="absolute -bottom-2 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-500 to-transparent scale-x-0 hover:scale-x-100 transition-transform duration-500"></div>
               </span>
-              <br />
+              <br className="xs:hidden" />
+              <span className="hidden xs:inline">&nbsp;</span>
               <span className="inline-block hover:scale-105 transition-transform duration-500 cursor-default delay-100 relative">
                 Jain
                 <div className="absolute -bottom-2 left-0 w-full h-px bg-gradient-to-r from-transparent via-purple-500 to-transparent scale-x-0 hover:scale-x-100 transition-transform duration-500"></div>
               </span>
             </h1>
-            
+
             {/* Grid-pattern divider */}
             <div className="flex justify-center items-center gap-2 mb-4">
               <div className="w-2 h-2 border border-gray-300 rotate-45"></div>
-              <div className="w-16 h-px bg-gradient-to-r from-transparent via-black to-transparent"></div>
+              <div className="w-10 sm:w-16 h-px bg-gradient-to-r from-transparent via-black to-transparent"></div>
               <div className="w-2 h-2 bg-black rotate-45"></div>
-              <div className="w-16 h-px bg-gradient-to-r from-transparent via-black to-transparent"></div>
+              <div className="w-10 sm:w-16 h-px bg-gradient-to-r from-transparent via-black to-transparent"></div>
               <div className="w-2 h-2 border border-gray-300 rotate-45"></div>
             </div>
           </div>
 
           {/* Enhanced typing animation */}
-          <div className="mb-12 h-8 relative">
+          <div className="mb-10 sm:mb-12 min-h-[2.75rem] flex items-center justify-center relative">
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-50 to-transparent opacity-50 blur-sm"></div>
-            <p className="text-xl sm:text-2xl text-gray-600 font-light relative">
+            <p className="font-mono text-fluid-xl text-gray-600 font-normal relative tracking-tight">
               {displayText}
-              <span className="animate-pulse ml-1 text-blue-500">|</span>
+              <span className="animate-pulse ml-0.5 text-blue-500">|</span>
             </p>
           </div>
 
-          {/* Interactive buttons with grid-inspired design */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
-            <button 
+          {/* Primary actions */}
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 w-full max-w-sm sm:max-w-none mx-auto">
+            <button
               onClick={handleDownload}
               onMouseEnter={() => setIsHovering(true)}
               onMouseLeave={() => setIsHovering(false)}
-              className="group relative px-6 sm:px-8 py-3 w-full sm:w-auto bg-black text-white font-medium transition-all duration-300 hover:bg-gray-800 hover:scale-105 active:scale-95 overflow-hidden"
-              style={{
-                clipPath: 'polygon(0 0, calc(100% - 10px) 0, 100% 100%, 10px 100%)'
-              }}
+              className="group relative inline-flex items-center justify-center gap-2 px-7 sm:px-9 py-3.5 w-full sm:w-auto rounded-full bg-gray-900 text-white text-fluid-sm font-medium tracking-wide shadow-card transition-all duration-300 ease-out-expo hover:bg-black hover:shadow-card-hover hover:-translate-y-0.5 active:translate-y-0 overflow-hidden"
             >
               <span className="relative z-10">View Resume</span>
-              <div className="absolute inset-0 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
-              <span className="absolute inset-0 flex items-center justify-center text-black opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                View Resume
-              </span>
-              
-              {/* Grid pattern overlay */}
-              <div className="absolute inset-0 opacity-10 group-hover:opacity-20 transition-opacity duration-300"
-                   style={{
-                     backgroundImage: `linear-gradient(rgba(255,255,255,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.3) 1px, transparent 1px)`,
-                     backgroundSize: '8px 8px'
-                   }} 
+              <svg className="relative z-10 w-4 h-4 transition-transform duration-300 group-hover:translate-y-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v12m0 0l-4-4m4 4l4-4M4 20h16" />
+              </svg>
+              {/* Subtle grid nod to the section background */}
+              <span
+                className="absolute inset-0 opacity-10 group-hover:opacity-20 transition-opacity duration-300 pointer-events-none"
+                style={{
+                  backgroundImage: `linear-gradient(rgba(255,255,255,0.35) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.35) 1px, transparent 1px)`,
+                  backgroundSize: '8px 8px'
+                }}
               />
             </button>
-            
-            <button 
+
+            <button
               onMouseEnter={() => setIsHovering(true)}
               onMouseLeave={() => setIsHovering(false)}
               onClick={scrollToContact}
-              className="group relative px-6 sm:px-8 py-3 w-full sm:w-auto border border-black text-black font-medium transition-all duration-300 hover:bg-black hover:text-white hover:scale-105 active:scale-95 overflow-hidden"
-              style={{
-                clipPath: 'polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%)'
-              }}
+              className="group relative inline-flex items-center justify-center gap-2 px-7 sm:px-9 py-3.5 w-full sm:w-auto rounded-full border border-gray-300 bg-white/60 backdrop-blur-sm text-gray-900 text-fluid-sm font-medium tracking-wide transition-all duration-300 ease-out-expo hover:border-gray-900 hover:bg-gray-900 hover:text-white hover:-translate-y-0.5 active:translate-y-0"
             >
               Get In Touch
-              
-              {/* Grid pattern overlay */}
-              <div className="absolute inset-0 opacity-5 group-hover:opacity-10 transition-opacity duration-300"
-                   style={{
-                     backgroundImage: `linear-gradient(rgba(0,0,0,0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.3) 1px, transparent 1px)`,
-                     backgroundSize: '8px 8px'
-                   }} 
-              />
+              <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14m0 0l-5-5m5 5l-5 5" />
+              </svg>
             </button>
           </div>
         </div>
@@ -433,7 +423,7 @@ export default function Home() {
             </div>
             
             {/* Fallback message */}
-            <div className="p-3 sm:p-4 text-center text-gray-600 text-xs sm:text-sm border-t border-gray-200">
+            <div className="p-3 sm:p-4 text-center text-gray-600 text-fluid-sm border-t border-gray-200">
               <p>Can't view the PDF? <a href={pdfUrl || '#'} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Open in new tab</a> or download it above.</p>
             </div>
           </div>
@@ -485,25 +475,41 @@ export default function Home() {
         <p>
           Welcome to the portfolio of Darshan Jain, a talented Full Stack Developer specializing in modern web technologies 
           and mobile application development. Based in Mumbai, Maharashtra, India, Darshan has earned recognition as the 
-          Codeissance Hackathon Winner in the Industry Domain and is a Smart India Hackathon 2025 Finalist.
+          Codeissance Hackathon Winner in the Industry Domain, a Spectrum 2026 First Prize winner, and a Smart India
+          Hackathon 2025 Finalist. He is a 2x hackathon winner maintaining a 9.82 CGPA.
         </p>
         <h3>Professional Experience</h3>
         <p>
-          Currently working as a Full Stack Developer Intern at ZootechX (September 2025 - Present) in a hybrid role, 
-          and previously interned at Elight Labs (June-July 2023) as a remote Full Stack Developer. Darshan brings hands-on 
-          experience in building scalable, responsive, and user-friendly applications.
+          Completed a 6-month Full Stack Developer Internship at ZootechX (September 2025 - March 2026) in a hybrid role,
+          where he architected and deployed a production ERP for a Coca-Cola distributor, integrating Admin (Web), Counter
+          Sales (Web), and Driver (Mobile) applications on a unified Node.js, Express.js, and MongoDB backend. He designed
+          scalable REST APIs, optimized MongoDB operations using aggregation pipelines and bulk writes, and automated PDF
+          invoice parsing with Python, reducing reporting turnaround by 50%. He previously interned at Elight Labs
+          (June-July 2023) as a remote Full Stack Developer.
+        </p>
+        <h3>Open Source Contributions</h3>
+        <p>
+          Darshan is an open source contributor to PinchTab, a Go-based browser automation tool that gives AI agents and
+          LLM-driven programs programmatic control over Chrome via an HTTP API, used for scraping, testing, and
+          agent-driven workflows. He has submitted multiple pull requests covering bug fixes and feature additions,
+          participated in code reviews, and was selected as a private organization member for consistent, quality contributions.
         </p>
         <h3>Technical Expertise</h3>
         <ul>
           <li>Frontend Development: React.js, React Native, Flutter, HTML5, CSS3, JavaScript, TypeScript, Tailwind CSS, Bootstrap</li>
           <li>Backend Development: Node.js, Express.js, REST APIs, GraphQL, Microservices</li>
-          <li>Database Management: MongoDB, MySQL, Firebase, PostgreSQL</li>
+          <li>Database Management: MongoDB, MySQL, PostgreSQL, Prisma ORM, pgvector, Firebase</li>
+          <li>AI and LLM Engineering: OpenAI embeddings, RAG pipelines, vector databases, embedding pipelines</li>
           <li>Mobile Development: React Native, Flutter, Dart, Progressive Web Apps (PWA)</li>
-          <li>Tools & Technologies: Git, GitHub, Docker, Vercel, Netlify, AWS, Redux, Webpack, Vite</li>
+          <li>Tools & Technologies: Git, GitHub, Docker, Vercel, Netlify, AWS, Neon, Redux, Webpack, Vite</li>
+          <li>Programming Languages: Java, Python, C++, JavaScript, TypeScript, Go</li>
           <li>AI/ML Integration: TensorFlow, Machine Learning, Computer Vision, Face Recognition</li>
         </ul>
         <h3>Notable Projects</h3>
         <ul>
+          <li>Chartix - Live AI-powered CMT exam prep SaaS with a 30-model PostgreSQL schema via Prisma, OpenAI embeddings, and a pgvector RAG pipeline on serverless Postgres (Neon)</li>
+          <li>Coca-Cola Distributor ERP - Production ERP unifying Admin, Counter Sales, and Driver applications on a Node.js, Express.js, and MongoDB backend</li>
+          <li>Smart Alumni Connect - First Prize winning alumni networking and mentorship platform at Spectrum 2026</li>
           <li>LeadVault - Hackathon-winning enterprise lead management system with Two-Factor Authentication and PWA</li>
           <li>CivicConnect - Smart civic issue reporting platform for Smart India Hackathon 2025 with AI-powered detection</li>
           <li>Attendify - Revolutionary attendance management system eliminating proxy attendance with facial recognition</li>
@@ -513,15 +519,21 @@ export default function Home() {
         </ul>
         <h3>Awards and Recognition</h3>
         <ul>
-          <li>Codeissance Hackathon Winner - Industry Domain (2025) - Thadomal Shahani Engineering College</li>
+          <li>1st Prize, Spectrum 2026 - Smart Alumni Connect platform</li>
+          <li>Codeissance Hackathon Winner - Industry Domain (2025) - LeadVault among 400+ teams</li>
+          <li>Advanced training in SAR (PolSAR, InSAR) at IIT Bombay</li>
+          <li>Top rank for three consecutive semesters - CGPA 9.82/10</li>
+          <li>Selected as a private organization member at PinchTab for open source contributions</li>
           <li>Smart India Hackathon 2025 Finalist - CivicConnect Project</li>
           <li>Tantravihar Tech Fest Participant - Attendify Project Showcase</li>
           <li>Academic Excellence Award</li>
         </ul>
         <h3>Education</h3>
         <p>
-          Computer Engineering Student at Thadomal Shahani Engineering College (TSEC), Mumbai. Focused on 
-          Full Stack Web Development, Mobile Application Development, and emerging technologies.
+          Bachelor of Engineering in Information Technology at Vidyalankar Institute of Technology, Mumbai (2024-2027),
+          with a CGPA of 9.82/10 and top rank for three consecutive semesters. Previously completed a Diploma in
+          Information Technology at Vidyalankar Polytechnic (2021-2024) with a 92.31% aggregate. Focused on Full Stack
+          Web Development, Mobile Application Development, and emerging technologies.
         </p>
         <h3>Services Offered</h3>
         <p>
@@ -542,10 +554,13 @@ export default function Home() {
         <p>
           Darshan Jain, Full Stack Developer, Web Developer Mumbai, React Developer, Node.js Expert, 
           MongoDB Developer, Flutter Developer, React Native Developer, Mobile App Developer India, 
-          Hackathon Winner, Codeissance Winner, ZootechX Intern, TSEC Student, JavaScript Developer, 
+          Hackathon Winner, Codeissance Winner, Spectrum 2026 Winner, ZootechX Intern, Vidyalankar Institute of
+          Technology Student, PinchTab Contributor, Open Source Contributor, Go Developer, JavaScript Developer, 
           TypeScript Developer, Frontend Developer, Backend Developer, MERN Stack Developer, 
           Software Engineer, Programmer Portfolio, Web Development Services, Hire Developer Mumbai, 
-          Freelance Developer India, LeadVault Project, CivicConnect App, Smart India Hackathon, 
+          Freelance Developer India, LeadVault Project, CivicConnect App, Chartix, Smart Alumni Connect, ERP Developer,
+          PostgreSQL Developer, Prisma Developer, pgvector, RAG Pipeline, Vector Database, OpenAI Embeddings,
+          Smart India Hackathon, 
           Progressive Web Apps, REST API Development, Database Design, UI UX Developer, 
           Responsive Web Design, Modern Web Development, Tech Enthusiast, Problem Solver,
           Computer Engineering Student, AI ML Integration, TensorFlow Developer, Firebase Expert
