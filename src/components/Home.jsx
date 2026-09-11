@@ -476,7 +476,7 @@ export default function Home() {
           Welcome to the portfolio of Darshan Jain, a talented Full Stack Developer specializing in modern web technologies 
           and mobile application development. Based in Mumbai, Maharashtra, India, Darshan has earned recognition as the 
           Codeissance Hackathon Winner in the Industry Domain, a Spectrum 2026 First Prize winner, and a Smart India
-          Hackathon 2025 Finalist. He is a 2x hackathon winner maintaining a 9.82 CGPA.
+          Hackathon 2025 Finalist. He is a 2x hackathon winner maintaining a 9.86 CGPA.
         </p>
         <h3>Professional Experience</h3>
         <p>
@@ -491,8 +491,11 @@ export default function Home() {
         <p>
           Darshan is an open source contributor to PinchTab, a Go-based browser automation tool that gives AI agents and
           LLM-driven programs programmatic control over Chrome via an HTTP API, used for scraping, testing, and
-          agent-driven workflows. He has submitted multiple pull requests covering bug fixes and feature additions,
-          participated in code reviews, and was selected as a private organization member for consistent, quality contributions.
+          agent-driven workflows with multi-instance and stealth execution. He has shipped multiple merged pull requests
+          covering bug fixes and feature additions, participated in code reviews, and was selected as a private
+          organization member for sustained, quality contributions. He also contributes to aispace-client, an open-source
+          Go CLI and agent skill for secure, temporary file sharing between AI agents, featuring streaming uploads,
+          age-based encryption, and expiring links with JSON output for automation.
         </p>
         <h3>Technical Expertise</h3>
         <ul>
@@ -507,7 +510,8 @@ export default function Home() {
         </ul>
         <h3>Notable Projects</h3>
         <ul>
-          <li>Chartix - Live AI-powered CMT exam prep SaaS with a 30-model PostgreSQL schema via Prisma, OpenAI embeddings, and a pgvector RAG pipeline on serverless Postgres (Neon)</li>
+          <li>Chartix - Live AI-powered CMT exam prep SaaS with live paying users, a 30-model PostgreSQL schema via Prisma, OpenAI embeddings, a pgvector RAG tutor, and Razorpay payments on serverless Postgres (Neon)</li>
+          <li>Ninsho - Open-source security-first authentication engine for Node.js with passkeys/WebAuthn, refresh-token rotation, DPoP proof-of-possession, and Redis-backed rate limiting</li>
           <li>Coca-Cola Distributor ERP - Production ERP unifying Admin, Counter Sales, and Driver applications on a Node.js, Express.js, and MongoDB backend</li>
           <li>Smart Alumni Connect - First Prize winning alumni networking and mentorship platform at Spectrum 2026</li>
           <li>LeadVault - Hackathon-winning enterprise lead management system with Two-Factor Authentication and PWA</li>
@@ -522,8 +526,9 @@ export default function Home() {
           <li>1st Prize, Spectrum 2026 - Smart Alumni Connect platform</li>
           <li>Codeissance Hackathon Winner - Industry Domain (2025) - LeadVault among 400+ teams</li>
           <li>Advanced training in SAR (PolSAR, InSAR) at IIT Bombay</li>
-          <li>Top rank for three consecutive semesters - CGPA 9.82/10</li>
+          <li>Top rank for three consecutive semesters - CGPA 9.86/10</li>
           <li>Selected as a private organization member at PinchTab for open source contributions</li>
+          <li>Published Ninsho, an open-source Node.js authentication library, under NinshoORG</li>
           <li>Smart India Hackathon 2025 Finalist - CivicConnect Project</li>
           <li>Tantravihar Tech Fest Participant - Attendify Project Showcase</li>
           <li>Academic Excellence Award</li>
@@ -531,7 +536,7 @@ export default function Home() {
         <h3>Education</h3>
         <p>
           Bachelor of Engineering in Information Technology at Vidyalankar Institute of Technology, Mumbai (2024-2027),
-          with a CGPA of 9.82/10 and top rank for three consecutive semesters. Previously completed a Diploma in
+          with a CGPA of 9.86/10 and top rank for three consecutive semesters. Previously completed a Diploma in
           Information Technology at Vidyalankar Polytechnic (2021-2024) with a 92.31% aggregate. Focused on Full Stack
           Web Development, Mobile Application Development, and emerging technologies.
         </p>
@@ -560,6 +565,7 @@ export default function Home() {
           Software Engineer, Programmer Portfolio, Web Development Services, Hire Developer Mumbai, 
           Freelance Developer India, LeadVault Project, CivicConnect App, Chartix, Smart Alumni Connect, ERP Developer,
           PostgreSQL Developer, Prisma Developer, pgvector, RAG Pipeline, Vector Database, OpenAI Embeddings,
+          Ninsho, NinshoORG, aispace-client, WebAuthn, Passkeys, DPoP, Authentication Library, Application Security,
           Smart India Hackathon, 
           Progressive Web Apps, REST API Development, Database Design, UI UX Developer, 
           Responsive Web Design, Modern Web Development, Tech Enthusiast, Problem Solver,

@@ -60,8 +60,8 @@ const awards = [
     title: "📈 Top Rank - Three Consecutive Semesters",
     issuer: "Vidyalankar Institute of Technology",
     date: "2024 - 2026",
-    description: "Consistently secured the top rank for three consecutive semesters in the Bachelor of Engineering in Information Technology programme, maintaining a CGPA of 9.82/10. Sustaining first position across three successive semesters — while simultaneously shipping a production ERP during a six-month industry internship, contributing to open source, and competing in national-level hackathons — reflects consistent academic discipline alongside heavy practical engineering workload rather than performance in a single strong term.",
-    badges: ["📚 CGPA 9.82", "🥇 Rank 1"]
+    description: "Consistently secured the top rank for three consecutive semesters in the Bachelor of Engineering in Information Technology programme, maintaining a CGPA of 9.86/10. Sustaining first position across three successive semesters — while simultaneously shipping a production ERP during a six-month industry internship, contributing to open source, and competing in national-level hackathons — reflects consistent academic discipline alongside heavy practical engineering workload rather than performance in a single strong term.",
+    badges: ["📚 CGPA 9.86", "🥇 Rank 1"]
   }
 ];
 

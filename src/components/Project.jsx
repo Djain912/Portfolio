@@ -23,12 +23,40 @@ Running an embedding pipeline against third-party APIs in production surfaces re
 Wrote and optimised SQL and Prisma queries across the full schema — entitlement checks on every content read, aggregate progress reporting, and payment reconciliation — tuning indexes and query shape to keep response times low as the dataset grew. Schema evolution is handled entirely through Prisma migrations, giving incremental, reviewable, trackable changes across the project's lifetime, with Git as the version control backbone.
 
 💳 PRODUCT SURFACE:
-Beyond the engine, Chartix ships a complete commercial product: tiered subscriptions with entitlement gating, payment integration, per-chapter progress tracking, timed mock exams that mirror the real CMT format, performance analytics highlighting weak topics, and an AI tutor that answers curriculum questions with citations back to source material.`,
+Beyond the engine, Chartix ships a complete commercial product with live, paying users: tiered subscriptions with entitlement gating, Razorpay payment integration, per-chapter progress tracking, a full quiz engine with timed mock exams mirroring the real CMT format, performance analytics highlighting weak topics, and a RAG-based AI tutor that answers curriculum questions with citations back to source material. Taking it from schema design through to paying customers meant owning every layer — data model, pipeline, payments, and product.`,
     img: "https://images.pexels.com/photos/6801648/pexels-photo-6801648.jpeg?auto=compress&cs=tinysrgb&w=600",
-    tags: ["PostgreSQL", "Prisma", "pgvector", "OpenAI", "RAG", "Next.js"],
-    features: ["30-Model Schema", "RAG + Vector Search", "OpenAI Embeddings", "Soft-Delete Versioning", "Payments & Entitlements", "Serverless Postgres"],
+    tags: ["PostgreSQL", "Prisma", "pgvector", "OpenAI", "RAG", "Razorpay"],
+    features: ["30-Model Schema", "RAG AI Tutor", "OpenAI Embeddings", "Razorpay Payments", "Soft-Delete Versioning", "Serverless Postgres"],
     badges: ["🚀 Live SaaS", "🧠 AI/RAG"],
-    techStack: "Next.js, PostgreSQL (Neon), Prisma, pgvector, OpenAI Embeddings, TypeScript, Git"
+    techStack: "Next.js, PostgreSQL (Neon), Prisma, pgvector, OpenAI Embeddings, Razorpay, TypeScript, Git"
+  },
+  {
+    title: "Ninsho 🔐",
+    subtitle: "Security-First Auth Engine for Node.js — Final-Year Project, Open Source",
+    link: "https://github.com/NinshoORG",
+    githubLink: "https://github.com/NinshoORG",
+    description: "Open-source authentication library for Node.js covering sessions, passkeys/WebAuthn, refresh-token rotation, and DPoP proof-of-possession token binding — with Redis-backed rate limiting and ownership guards.",
+    fullDescription: `Ninsho is an open-source authentication library for Node.js, built as a final-year project but engineered well past academic scope. Most auth tutorials stop at "hash the password, sign a JWT." Ninsho starts where that leaves off, implementing the patterns production systems actually need to resist real attacks.
+
+🔑 AUTHENTICATION SURFACE:
+The library covers the full modern authentication surface rather than a single strategy. Classic server-side sessions are supported alongside passkeys/WebAuthn, giving applications a path to passwordless, phishing-resistant login backed by platform authenticators — Face ID, Touch ID, Windows Hello, and hardware security keys.
+
+🔄 REFRESH-TOKEN ROTATION:
+Long-lived refresh tokens are a standing liability: steal one and you own the account indefinitely. Ninsho implements rotation, issuing a new refresh token on every use and invalidating its predecessor. A replayed token signals theft, allowing the entire token family to be revoked — turning a silent compromise into a detectable, containable event.
+
+🧬 DPoP PROOF-OF-POSSESSION:
+Bearer tokens have a fundamental weakness: whoever holds the token is trusted, so a leaked token works from anywhere. Ninsho implements DPoP (Demonstrating Proof-of-Possession), binding tokens to a client-held key pair. Each request carries a signed proof, so a stolen token is useless without the private key that never leaves the client.
+
+🛡️ ATTACK SURFACE HARDENING:
+Redis-backed rate limiting defends the credential endpoints against credential-stuffing and brute-force attempts, with distributed counters that hold up across multiple application instances rather than resetting per-process. Ownership guards enforce that an authenticated user can only reach their own resources, closing the insecure-direct-object-reference gap that authentication alone never covers.
+
+🧪 TESTING & DISTRIBUTION:
+Security code is exactly the code you cannot afford to guess at, so the library carries extensive test coverage across its auth flows, rotation logic, and guard behaviour. It is published as a standalone open-source library under the NinshoORG organization, designed to be dropped into any Node.js application rather than living as coursework.`,
+    img: "https://images.pexels.com/photos/60504/security-protection-anti-virus-software-60504.jpeg?auto=compress&cs=tinysrgb&w=600",
+    tags: ["Node.js", "WebAuthn", "Redis", "Security", "Open Source"],
+    features: ["Passkeys / WebAuthn", "Refresh-Token Rotation", "DPoP Token Binding", "Redis Rate Limiting", "Ownership Guards", "Extensive Test Coverage"],
+    badges: ["🔐 Security", "📦 Open Source"],
+    techStack: "Node.js, WebAuthn/Passkeys, DPoP, Redis, JWT, Jest"
   },
   {
     title: "Coca-Cola Distributor ERP 🏭",

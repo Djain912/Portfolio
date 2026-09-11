@@ -100,7 +100,7 @@ export default function About() {
                    opacity: isVisible ? 1 : 0,
                    transform: isVisible ? 'translateY(0px)' : 'translateY(20px)'
                  }}>
-                I'm a <span className="text-gray-900 font-medium">2x hackathon winner</span> pursuing a B.E. in Information Technology at Vidyalankar Institute of Technology with a <span className="text-gray-900 font-medium">CGPA of 9.82/10</span>, having held the top rank for three consecutive semesters. I also contribute to open source — I'm a private organization member at <span className="text-gray-900 font-medium">PinchTab</span>, a Go-based browser automation tool for AI agents.
+                I'm a <span className="text-gray-900 font-medium">2x hackathon winner</span> pursuing a B.E. in Information Technology at Vidyalankar Institute of Technology with a <span className="text-gray-900 font-medium">CGPA of 9.86/10</span>, having held the top rank for three consecutive semesters. I also contribute to open source — I'm a private organization member at <span className="text-gray-900 font-medium">PinchTab</span>, a Go-based browser automation tool for AI agents.
               </p>
 
               <p className="transform transition-all duration-700 delay-700"
@@ -336,7 +336,7 @@ export default function About() {
           Darshan's journey in software development began during his academic years at Vidyalankar Polytechnic, where he
           completed a Diploma in Information Technology with a 92.31% aggregate. He is currently pursuing a Bachelor of
           Engineering in Information Technology at Vidyalankar Institute of Technology (2024-2027), maintaining a CGPA of
-          9.82/10 and holding the top rank for three consecutive semesters. His passion for coding and problem-solving led
+          9.86/10 and holding the top rank for three consecutive semesters. His passion for coding and problem-solving led
           him to intern at Elight Labs as a Full Stack Developer in June-July 2023, where he gained valuable hands-on
           experience in remote work and professional software development practices.
         </p>
@@ -355,7 +355,10 @@ export default function About() {
           LLM-driven programs programmatic control over Chrome via an HTTP API, used for scraping, testing, and
           agent-driven workflows. He has submitted multiple pull requests covering bug fixes and feature additions,
           participated in code reviews, and collaborated with maintainers through Git-based workflows. He was selected as
-          a private organization member for consistent, quality contributions.
+          a private organization member for sustained, quality contributions. He also contributes to aispace-client, an
+          open-source Go CLI and agent skill for secure, temporary file sharing between AI agents, and has published
+          Ninsho, a security-first Node.js authentication library covering passkeys/WebAuthn, refresh-token rotation, and
+          DPoP proof-of-possession, under the NinshoORG organization.
         </p>
         <h3>Technical Skills and Expertise</h3>
         <p>

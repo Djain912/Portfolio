@@ -11,7 +11,7 @@ const contributions = [
     tagline: "Browser automation for AI agents — programmatic Chrome control over an HTTP API",
     img: "https://images.pexels.com/photos/11035380/pexels-photo-11035380.jpeg?auto=compress&cs=tinysrgb&w=600",
     description:
-      "Contributed to PinchTab, a Go-based browser automation tool that gives AI agents and LLM-driven programs full programmatic control over Chrome through an HTTP API — used for scraping, automated testing, and agent-driven workflows.",
+      "Contributed to PinchTab, a Go-based browser automation engine that gives AI agents and LLM-driven programs full programmatic control over Chrome through an HTTP API — supporting multi-instance and stealth execution for scraping, automated testing, and agent-driven workflows.",
     fullDescription: `PinchTab is a Go-based browser automation tool that exposes Chrome to AI agents and LLM-driven programs through a clean HTTP API. Instead of each agent shipping its own brittle browser-driver integration, PinchTab provides a single, language-agnostic surface for navigating pages, reading the DOM, interacting with elements, and extracting content — making it a practical backbone for scraping pipelines, automated end-to-end testing, and autonomous agent workflows.
 
 Working in a Go codebase built around browser internals and concurrent session handling meant reading and reasoning about unfamiliar production code before writing a single line — tracing request flow from the HTTP layer down to the browser protocol, and understanding the invariants the maintainers cared about.
@@ -22,12 +22,42 @@ Sustained, quality contributions and consistent collaboration with maintainers l
 
 This work is a different discipline from greenfield development: the constraint is not "what should this be" but "how does this fit what already exists." It built practical experience in reading large unfamiliar codebases, matching an established project's conventions and idiom, communicating asynchronously with maintainers across time zones, and shipping changes into software other people depend on.`,
     highlights: [
-      "Submitted multiple pull requests covering bug fixes and feature additions",
+      "Shipped multiple merged pull requests covering bug fixes and feature additions",
+      "Supported multi-instance and stealth execution for agent workloads",
       "Participated in code reviews and iterated on maintainer feedback",
-      "Collaborated with maintainers through Git-based workflows",
-      "Selected as a private organization member for consistent, quality contributions"
+      "Selected as a private organization member for sustained, quality contributions"
     ],
     technologies: ["Go", "HTTP API", "Chrome DevTools Protocol", "Browser Automation", "Git/GitHub", "LLM Agents"]
+  },
+  {
+    project: "aispace-client",
+    role: "Open Source Contributor",
+    projectLink: "https://github.com/Djain912",
+    githubLink: "https://github.com/Djain912",
+    tagline: "Go CLI and agent skill for secure, temporary file sharing between AI agents",
+    img: "https://images.pexels.com/photos/1181298/pexels-photo-1181298.jpeg?auto=compress&cs=tinysrgb&w=600",
+    description:
+      "Contributed to aispace-client, an open-source Go CLI and agent skill for secure, temporary file sharing between AI agents — featuring streaming uploads, age-based encryption, and expiring links with JSON output for automation.",
+    fullDescription: `aispace-client solves a practical problem in multi-agent systems: getting a file from one AI agent to another without leaving it sitting in permanent, unsecured storage. It is a Go command-line tool and agent skill for secure, ephemeral file exchange, designed to be driven by automation rather than by a human clicking through a UI.
+
+📤 STREAMING UPLOADS:
+Files are streamed rather than buffered wholesale into memory, so the tool handles large artifacts — datasets, model outputs, build products — without its memory footprint scaling with file size. That matters when the client runs inside a constrained agent sandbox rather than on a workstation.
+
+🔒 AGE-BASED ENCRYPTION:
+Payloads are encrypted client-side using age, the modern successor to PGP for file encryption. Encryption happens before anything leaves the machine, so the storage layer only ever holds ciphertext and the service itself is never in a position to read what passes through it.
+
+⏳ EXPIRING LINKS:
+Every share is temporary by construction. Links carry an expiry, so transferred files age out automatically instead of accumulating as a growing, forgotten attack surface — the right default when agents may exchange thousands of files unattended.
+
+🤖 BUILT FOR AUTOMATION:
+The CLI emits structured JSON output, which is what makes it usable as an agent skill rather than just a human tool. An agent can invoke it, parse the result deterministically, and act on the returned link without any screen-scraping of human-formatted text — the difference between a tool an agent can technically run and one it can reliably compose into a workflow.`,
+    highlights: [
+      "Contributed to an open-source Go CLI and agent skill for secure file sharing",
+      "Streaming uploads that keep memory flat regardless of file size",
+      "Client-side age encryption with expiring, temporary share links",
+      "Structured JSON output so AI agents can drive it programmatically"
+    ],
+    technologies: ["Go", "CLI", "age Encryption", "AI Agent Skills", "JSON", "Git/GitHub"]
   }
 ];
 
